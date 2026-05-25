@@ -1,0 +1,345 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kolosseum Tools</title>
+  <meta name="description" content="Operational calculators and structured training utilities from Kolosseum.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Kolosseum Tools home">
+        <span class="brand-mark">KOLOSSEUM</span>
+        <span class="brand-submark">TOOLS</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#tools">Tools</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#status">Status</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <a class="nav-cta" href="#tools">Open Tool Bay</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">PUBLIC TOOL SURFACE</p>
+          <h1>Structured tools for controlled training operations.</h1>
+          <p class="hero-lede">
+            Kolosseum Tools provides focused calculators, logs, and planning utilities for structured training environments.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#tools">
+              View Tools
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="button button-secondary" href="#event-block-calculator">
+              Open Event Block Calculator
+            </a>
+          </div>
+
+          <div class="hero-note">
+            <span class="shield-dot" aria-hidden="true"></span>
+            <span>Public instruments. Platform-grade visual system.</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Kolosseum Tools preview">
+          <div class="panel-topline">
+            <span>KOLOSSEUM TOOLS</span>
+            <span>LIVE SURFACE</span>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="metric-card metric-card-wide">
+              <span class="metric-label">Selected Tool</span>
+              <strong id="preview-tool-name">Event Block Calculator</strong>
+              <span class="metric-subtext">Planning utility</span>
+            </div>
+
+            <div class="metric-card">
+              <span class="metric-label">Status</span>
+              <strong id="preview-tool-status">Live</strong>
+              <span class="metric-subtext">Available</span>
+            </div>
+
+            <div class="metric-card">
+              <span class="metric-label">Mode</span>
+              <strong>Public</strong>
+              <span class="metric-subtext">No account required</span>
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-header">
+                <span>Tool Activity</span>
+                <span>7 Days</span>
+              </div>
+              <div class="chart-line" aria-hidden="true">
+                <span style="--h: 36%"></span>
+                <span style="--h: 44%"></span>
+                <span style="--h: 42%"></span>
+                <span style="--h: 61%"></span>
+                <span style="--h: 58%"></span>
+                <span style="--h: 73%"></span>
+                <span style="--h: 66%"></span>
+              </div>
+            </div>
+
+            <div class="feed-card">
+              <div class="feed-header">Tool Bay</div>
+              <div class="feed-row">
+                <span class="feed-icon"></span>
+                <span>Event blocks</span>
+                <strong>Open</strong>
+              </div>
+              <div class="feed-row">
+                <span class="feed-icon"></span>
+                <span>IronClock</span>
+                <strong>Open</strong>
+              </div>
+              <div class="feed-row">
+                <span class="feed-icon"></span>
+                <span>Gym Share</span>
+                <strong>Open</strong>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="tool-bay" id="tools">
+        <div class="section-heading">
+          <p class="eyebrow">TOOL BAY</p>
+          <h2>Focused utilities. One active tool at a time.</h2>
+          <p>
+            Each tool uses the same visual system, spacing, card sizing, and action structure.
+          </p>
+        </div>
+
+        <div class="tool-grid" role="list">
+          <article class="tool-card is-selected" role="listitem" data-tool-card data-tool-name="Event Block Calculator" data-tool-status="Live" id="event-block-calculator">
+            <div class="tool-card-head">
+              <span class="tool-icon">▦</span>
+              <span class="tool-chip tool-chip-live">Live</span>
+            </div>
+            <h3>Event Block Calculator</h3>
+            <p>Calculate event windows and block timing from a simple date input.</p>
+            <button class="tool-action" type="button" data-tool-action>Open tool</button>
+          </article>
+
+          <article class="tool-card" role="listitem" data-tool-card data-tool-name="IronClock" data-tool-status="Live">
+            <div class="tool-card-head">
+              <span class="tool-icon">◴</span>
+              <span class="tool-chip tool-chip-live">Live</span>
+            </div>
+            <h3>IronClock</h3>
+            <p>Track timing blocks and structured session segments.</p>
+            <button class="tool-action" type="button" data-tool-action>Open tool</button>
+          </article>
+
+          <article class="tool-card" role="listitem" data-tool-card data-tool-name="Gym Share" data-tool-status="Live">
+            <div class="tool-card-head">
+              <span class="tool-icon">⌁</span>
+              <span class="tool-chip tool-chip-live">Live</span>
+            </div>
+            <h3>Gym Share</h3>
+            <p>Share a clean public view of a training location or setup.</p>
+            <button class="tool-action" type="button" data-tool-action>Open tool</button>
+          </article>
+
+          <article class="tool-card" role="listitem" data-tool-card data-tool-name="Session Log" data-tool-status="Preview">
+            <div class="tool-card-head">
+              <span class="tool-icon">□</span>
+              <span class="tool-chip tool-chip-preview">Preview</span>
+            </div>
+            <h3>Session Log</h3>
+            <p>Record factual session items in a lightweight structured format.</p>
+            <button class="tool-action" type="button" data-tool-action>Preview</button>
+          </article>
+
+          <article class="tool-card" role="listitem" data-tool-card data-tool-name="Meet Planner" data-tool-status="Locked">
+            <div class="tool-card-head">
+              <span class="tool-icon">◇</span>
+              <span class="tool-chip tool-chip-locked">Locked</span>
+            </div>
+            <h3>Meet Planner</h3>
+            <p>Plan attempt-day timing, event blocks, and logistical notes.</p>
+            <button class="tool-action" type="button" data-tool-action>Locked</button>
+          </article>
+
+          <article class="tool-card" role="listitem" data-tool-card data-tool-name="Load Sheet" data-tool-status="Locked">
+            <div class="tool-card-head">
+              <span class="tool-icon">≡</span>
+              <span class="tool-chip tool-chip-locked">Locked</span>
+            </div>
+            <h3>Load Sheet</h3>
+            <p>Create a clean equipment and work-item planning sheet.</p>
+            <button class="tool-action" type="button" data-tool-action>Locked</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="active-tool-panel" id="active-tool">
+        <div class="active-tool-header">
+          <div>
+            <p class="eyebrow">ACTIVE TOOL</p>
+            <h2 id="active-tool-title">Event Block Calculator</h2>
+          </div>
+          <span class="active-status" id="active-tool-status">Live</span>
+        </div>
+
+        <div class="calculator-shell">
+          <form class="calculator-form" id="eventBlockForm">
+            <label>
+              Event date
+              <input type="date" id="eventDate" required>
+            </label>
+
+            <label>
+              Block length
+              <select id="blockLength">
+                <option value="4">4 weeks</option>
+                <option value="6" selected>6 weeks</option>
+                <option value="8">8 weeks</option>
+                <option value="10">10 weeks</option>
+                <option value="12">12 weeks</option>
+              </select>
+            </label>
+
+            <label>
+              Taper length
+              <select id="taperLength">
+                <option value="0">None</option>
+                <option value="1" selected>1 week</option>
+                <option value="2">2 weeks</option>
+              </select>
+            </label>
+
+            <button class="button button-primary" type="submit">
+              Calculate
+              <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <div class="result-card" id="resultCard">
+            <p class="result-kicker">Awaiting input</p>
+            <h3>Choose an event date to generate block dates.</h3>
+            <div class="result-grid">
+              <div>
+                <span>Block start</span>
+                <strong id="blockStart">—</strong>
+              </div>
+              <div>
+                <span>Taper start</span>
+                <strong id="taperStart">—</strong>
+              </div>
+              <div>
+                <span>Event date</span>
+                <strong id="eventDateOut">—</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" id="status">
+        <div>
+          <span class="trust-icon">⬡</span>
+          <div>
+            <strong>Single tool focus</strong>
+            <p>One selected utility controls the active panel.</p>
+          </div>
+        </div>
+
+        <div>
+          <span class="trust-icon">▣</span>
+          <div>
+            <strong>Consistent cards</strong>
+            <p>Equal spacing, sizing, and interaction states.</p>
+          </div>
+        </div>
+
+        <div>
+          <span class="trust-icon">◈</span>
+          <div>
+            <strong>Public surface</strong>
+            <p>Simple access without bloating the core platform.</p>
+          </div>
+        </div>
+
+        <div>
+          <span class="trust-icon">▤</span>
+          <div>
+            <strong>Platform-adjacent</strong>
+            <p>Same brand system, lighter functional scope.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="workflow-section" id="workflow">
+        <div class="workflow-card">
+          <p class="eyebrow">UTILITY FLOW</p>
+          <h2>From date input to structured output.</h2>
+
+          <div class="workflow-line" aria-label="Tool workflow">
+            <div class="workflow-step">
+              <span>01</span>
+              <strong>Select</strong>
+              <p>Choose one tool card.</p>
+            </div>
+
+            <div class="workflow-step">
+              <span>02</span>
+              <strong>Declare</strong>
+              <p>Enter the required values.</p>
+            </div>
+
+            <div class="workflow-step is-active">
+              <span>03</span>
+              <strong>Calculate</strong>
+              <p>Generate the utility output.</p>
+            </div>
+
+            <div class="workflow-step">
+              <span>04</span>
+              <strong>Use</strong>
+              <p>Copy dates or keep planning.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card" id="about">
+          <p class="eyebrow">POSITIONING</p>
+          <h2>Looks like Kolosseum. Does less than Kolosseum.</h2>
+          <p>
+            This public tools surface should stay deliberately narrow. It should acquire attention, prove design quality, and provide practical utility without implying the full platform is present.
+          </p>
+
+          <div class="about-stats">
+            <div>
+              <strong>6</strong>
+              <span>Tool slots</span>
+            </div>
+            <div>
+              <strong>1</strong>
+              <span>Active panel</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>Platform claims</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
