@@ -3343,3 +3343,175 @@
 }
 
 /* === TOOLS DIRECTORY HOME HERO END === */
+
+/* === TOOLS DIRECTORY CARD GRID START === */
+
+.tools-index-page .tool-index-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0 72px;
+}
+
+.tools-index-page .tool-index-card {
+  min-width: 0;
+  min-height: 156px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  align-items: start;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 9px;
+  padding: 20px;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.034), rgba(255,255,255,0.01)),
+    rgba(7,8,9,0.86);
+}
+
+.tools-index-page .tool-index-card:hover {
+  border-color: rgba(153,207,27,0.34);
+  box-shadow:
+    0 0 0 1px rgba(153,207,27,0.06),
+    0 18px 44px rgba(0,0,0,0.18),
+    0 0 22px rgba(153,207,27,0.07);
+  transform: translateY(-1px);
+}
+
+.tools-index-page .tool-index-card .tool-icon {
+  grid-row: 1 / span 2;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.tools-index-page .tool-index-card div {
+  min-width: 0;
+}
+
+.tools-index-page .tool-index-card h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--fontDisplay);
+  font-size: 1.12rem;
+  line-height: 1.06;
+}
+
+.tools-index-page .tool-index-card p {
+  max-width: 330px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.42;
+}
+
+.tools-index-page .tool-index-card strong {
+  justify-self: end;
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  border: 1px solid rgba(153,207,27,0.36);
+  border-radius: 999px;
+  padding: 0 12px;
+  color: var(--green);
+  background: rgba(153,207,27,0.035);
+  font-family: var(--fontDisplay);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1080px) {
+  .tools-index-page .tool-index-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tools-index-page .tool-index-card p {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 820px) {
+  .tools-index-page .tool-index-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    min-height: 146px;
+    padding: 18px;
+  }
+
+  .tools-index-page .tool-index-card .tool-icon {
+    grid-row: 1 / span 2;
+    width: 48px;
+    height: 48px;
+  }
+
+  .tools-index-page .tool-index-card strong {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: start;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 620px) {
+  .tools-index-page .tool-index-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+
+  .tools-index-page .tool-index-card {
+    min-height: 126px;
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr;
+    column-gap: 14px;
+    padding: 16px;
+  }
+
+  .tools-index-page .tool-index-card .tool-icon {
+    grid-row: 1 / span 2;
+    width: 44px;
+    height: 44px;
+  }
+
+  .tools-index-page .tool-index-card h2 {
+    font-size: 1.05rem;
+  }
+
+  .tools-index-page .tool-index-card p {
+    max-width: none;
+    margin-top: 7px;
+    font-size: 0.84rem;
+    line-height: 1.38;
+  }
+
+  .tools-index-page .tool-index-card strong {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    margin-top: 0;
+    min-height: 28px;
+    padding-inline: 10px;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .tools-index-page .tool-index-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+
+  .tools-index-page .tool-index-card strong {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: start;
+    margin-top: 4px;
+  }
+}
+
+/* === TOOLS DIRECTORY CARD GRID END === */
