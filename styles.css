@@ -4297,3 +4297,143 @@
 }
 
 /* === EVENT BLOCK LEGACY RELATED CARD REMOVAL END === */
+
+/* === ACTIVE TOOL PANEL FIT START === */
+
+.tool-page main,
+.event-block-page main,
+.gym-share-page main,
+.session-log-page main,
+.meet-planner-page main,
+.load-sheet-page main {
+  width: min(var(--contentMax), calc(100% - (var(--pagePad) * 2)));
+  margin-inline: auto;
+}
+
+.tool-page .tool-main-grid,
+.event-block-page .tool-main-grid,
+.gym-share-page .tool-main-grid,
+.session-log-page .tool-main-grid,
+.meet-planner-page .tool-main-grid,
+.load-sheet-page .tool-main-grid,
+.tool-page .tool-content-grid,
+.event-block-page .tool-content-grid,
+.gym-share-page .tool-content-grid,
+.session-log-page .tool-content-grid,
+.meet-planner-page .tool-content-grid,
+.load-sheet-page .tool-content-grid {
+  width: 100%;
+  display: block;
+}
+
+.tool-page section:has(.calculator-grid),
+.event-block-page section:has(.calculator-grid),
+.gym-share-page section:has(.calculator-grid),
+.session-log-page section:has(.calculator-grid),
+.meet-planner-page section:has(.calculator-grid),
+.load-sheet-page section:has(.calculator-grid) {
+  width: min(100%, 1080px);
+  max-width: 1080px;
+  margin-right: auto;
+}
+
+.tool-page .calculator-grid,
+.event-block-page .calculator-grid,
+.gym-share-page .calculator-grid,
+.session-log-page .calculator-grid,
+.meet-planner-page .calculator-grid,
+.load-sheet-page .calculator-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.tool-page .tool-form,
+.event-block-page .tool-form,
+.gym-share-page .tool-form,
+.session-log-page .tool-form,
+.meet-planner-page .tool-form,
+.load-sheet-page .tool-form,
+.tool-page .tool-result-card,
+.event-block-page .tool-result-card,
+.gym-share-page .tool-result-card,
+.session-log-page .tool-result-card,
+.meet-planner-page .tool-result-card,
+.load-sheet-page .tool-result-card {
+  min-width: 0;
+}
+
+.tool-page .tool-result-card,
+.event-block-page .tool-result-card,
+.gym-share-page .tool-result-card,
+.session-log-page .tool-result-card,
+.meet-planner-page .tool-result-card,
+.load-sheet-page .tool-result-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-block-page .result-grid,
+.meet-planner-page .result-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.event-block-page .copy-button,
+.meet-planner-page .copy-button,
+.load-sheet-page .copy-button,
+.gym-share-page .copy-button {
+  width: min(100%, 320px);
+}
+
+@media (max-width: 1180px) {
+  .tool-page section:has(.calculator-grid),
+  .event-block-page section:has(.calculator-grid),
+  .gym-share-page section:has(.calculator-grid),
+  .session-log-page section:has(.calculator-grid),
+  .meet-planner-page section:has(.calculator-grid),
+  .load-sheet-page section:has(.calculator-grid) {
+    max-width: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .tool-page .calculator-grid,
+  .event-block-page .calculator-grid,
+  .gym-share-page .calculator-grid,
+  .session-log-page .calculator-grid,
+  .meet-planner-page .calculator-grid,
+  .load-sheet-page .calculator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-page .tool-result-card,
+  .event-block-page .tool-result-card,
+  .gym-share-page .tool-result-card,
+  .session-log-page .tool-result-card,
+  .meet-planner-page .tool-result-card,
+  .load-sheet-page .tool-result-card {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .tool-page main,
+  .event-block-page main,
+  .gym-share-page main,
+  .session-log-page main,
+  .meet-planner-page main,
+  .load-sheet-page main {
+    width: calc(100% - 28px);
+  }
+
+  .event-block-page .result-grid,
+  .meet-planner-page .result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === ACTIVE TOOL PANEL FIT END === */
