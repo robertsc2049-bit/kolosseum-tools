@@ -1286,3 +1286,70 @@
 }
 
 /* === IRONCLOCK PAGE END === */
+
+/* === IRONCLOCK SELECTED BUTTON VISIBILITY START === */
+
+.ironclock-calculator .segment-btn,
+.ironclock-calculator .collar-btn,
+.ironclock-calculator .plate-toggle,
+.ironclock-timer .time-preset {
+  color: #d7dbd1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+    rgba(0,0,0,0.28);
+  border-color: rgba(255,255,255,0.14);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.ironclock-calculator .segment-btn:hover,
+.ironclock-calculator .collar-btn:hover,
+.ironclock-calculator .plate-toggle:hover,
+.ironclock-timer .time-preset:hover {
+  color: #f2f4ef;
+  border-color: rgba(153,207,27,0.46);
+  box-shadow: 0 0 14px rgba(153,207,27,0.10);
+}
+
+.ironclock-calculator .segment-btn.active,
+.ironclock-calculator .collar-btn.active,
+.ironclock-calculator .plate-toggle.active,
+.ironclock-timer .time-preset.active {
+  color: #f2f4ef !important;
+  background:
+    linear-gradient(180deg, rgba(153,207,27,0.055), rgba(153,207,27,0.018)),
+    rgba(0,0,0,0.30) !important;
+  border-color: rgba(153,207,27,0.86) !important;
+  box-shadow:
+    0 0 0 1px rgba(153,207,27,0.28),
+    0 0 16px rgba(153,207,27,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.025) !important;
+  text-shadow: none !important;
+}
+
+.ironclock-calculator .segment-btn.active::after,
+.ironclock-calculator .collar-btn.active::after,
+.ironclock-calculator .plate-toggle.active::after,
+.ironclock-timer .time-preset.active::after {
+  content: none !important;
+}
+
+.ironclock-calculator .segment-btn:focus-visible,
+.ironclock-calculator .collar-btn:focus-visible,
+.ironclock-calculator .plate-toggle:focus-visible,
+.ironclock-timer .time-preset:focus-visible {
+  outline: 2px solid rgba(153,207,27,0.78);
+  outline-offset: 3px;
+}
+
+.ironclock-calculator .segment-btn[disabled],
+.ironclock-calculator .collar-btn[disabled],
+.ironclock-calculator .plate-toggle[disabled],
+.ironclock-timer .time-preset[disabled] {
+  color: rgba(215,219,209,0.44);
+  border-color: rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.18);
+  box-shadow: none;
+}
+
+/* === IRONCLOCK SELECTED BUTTON VISIBILITY END === */
