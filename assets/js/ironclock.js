@@ -324,35 +324,54 @@ function calculateNearestPlateStack(targetKg, availablePlates) {
 }
 
 function renderResult(result) {
-  loadedWeight.textContent = displayNumber(result.loadedKg) + " kg";
+  const loadedKg = roundTo(result.loadedKg, 2);
+  const targetKg = roundTo(result.targetKg, 2);
+  const differenceKg = roundTo(loadedKg - targetKg, 2);
+
+  loadedWeight.textContent = displayNumber(loadedKg) + " kg";
 
   exactStatus.textContent = result.exact ? "Exact" : "Rounded";
   exactStatus.classList.toggle("warning", !result.exact);
 
   if (result.exact) {
     if (result.inputUnit === "lb") {
-      roundingNote.textContent = "Input target: " + displayNumber(result.targetInput) + " lb = " + displayNumber(result.targetKg) + " kg. Exact kg load available.";
+      roundingNote.textContent =
+        "Input converted from " +
+        displayNumber(result.targetInput) +
+        " lb to " +
+        displayNumber(targetKg) +
+        " kg. Exact kg load available.";
     }
     else {
       roundingNote.textContent = "Exact kg load available with selected plates.";
     }
   }
   else {
-    const differenceKg = result.loadedKg - result.targetKg;
     const direction = differenceKg > 0 ? "up" : "down";
 
     if (result.inputUnit === "lb") {
       roundingNote.textContent =
-        "Input target: " + displayNumber(result.targetInput) + " lb = " +
-        displayNumber(result.targetKg) + " kg. Nearest available kg load is " +
-        displayNumber(result.loadedKg) + " kg, rounded " + direction + " by " +
-        displayNumber(Math.abs(differenceKg)) + " kg.";
+        "Input converted from " +
+        displayNumber(result.targetInput) +
+        " lb to " +
+        displayNumber(targetKg) +
+        " kg. Rounded to nearest available kg load: " +
+        displayNumber(loadedKg) +
+        " kg (" +
+        direction +
+        " by " +
+        displayNumber(Math.abs(differenceKg)) +
+        " kg).";
     }
     else {
       roundingNote.textContent =
-        "Target cannot be loaded exactly with selected plates. Nearest available kg load is " +
-        displayNumber(result.loadedKg) + " kg, rounded " + direction + " by " +
-        displayNumber(Math.abs(differenceKg)) + " kg.";
+        "Rounded to nearest available kg load: " +
+        displayNumber(loadedKg) +
+        " kg (" +
+        direction +
+        " by " +
+        displayNumber(Math.abs(differenceKg)) +
+        " kg).";
     }
   }
 
@@ -389,7 +408,6 @@ function calculateLoad() {
 
   const targetKg = convertToKg(targetInput, inputUnit);
   const availablePlates = getAvailablePlates();
-
   const nearest = calculateNearestPlateStack(targetKg, availablePlates);
   const exact = Math.abs(nearest.loadedKg - targetKg) < 0.001;
 
@@ -405,6 +423,7 @@ function calculateLoad() {
   updateBarStatus();
   updatePlateSummary();
 }
+
 function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
