@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kolosseum Tools</title>
   <meta name="description" content="Public operational tools from Kolosseum.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -38,11 +41,11 @@
           <div class="hero-actions">
             <a class="button button-primary" href="#tools">
               View Tools
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">â†’</span>
             </a>
             <a class="button button-secondary" href="#event-block">
               Open Event Block
-              <span aria-hidden="true">⌘</span>
+              <span aria-hidden="true">âŒ˜</span>
             </a>
           </div>
 
@@ -203,78 +206,78 @@
 
       <section class="tool-strip" id="tools" aria-label="Kolosseum tool cards">
         <article class="feature-card is-selected" data-tool-card data-tool-name="Event Block Calculator" data-tool-short="Event Block" data-tool-status="Live" data-tool-mode="Event timing" id="event-block">
-          <div class="feature-icon">▦</div>
+          <div class="feature-icon">â–¦</div>
           <div>
             <h2>Event Block Calculator</h2>
             <p>Calculate block dates from an event date.</p>
           </div>
-          <button type="button" data-tool-action aria-label="Open Event Block Calculator">›</button>
+          <button type="button" data-tool-action aria-label="Open Event Block Calculator">â€º</button>
         </article>
 
         <article class="feature-card" data-tool-card data-tool-name="IronClock" data-tool-short="IronClock" data-tool-status="Live" data-tool-mode="Timing">
-          <div class="feature-icon">◴</div>
+          <div class="feature-icon">â—´</div>
           <div>
             <h2>IronClock</h2>
             <p>Session timing and segment tracking.</p>
           </div>
-          <button type="button" data-tool-action aria-label="Open IronClock">›</button>
+          <button type="button" data-tool-action aria-label="Open IronClock">â€º</button>
         </article>
 
         <article class="feature-card" data-tool-card data-tool-name="Gym Share" data-tool-short="Gym Share" data-tool-status="Live" data-tool-mode="Public share">
-          <div class="feature-icon">⌁</div>
+          <div class="feature-icon">âŒ</div>
           <div>
             <h2>Gym Share</h2>
             <p>Public view for a training location.</p>
           </div>
-          <button type="button" data-tool-action aria-label="Open Gym Share">›</button>
+          <button type="button" data-tool-action aria-label="Open Gym Share">â€º</button>
         </article>
 
         <article class="feature-card" data-tool-card data-tool-name="Session Log" data-tool-short="Session Log" data-tool-status="Preview" data-tool-mode="Logging">
-          <div class="feature-icon">□</div>
+          <div class="feature-icon">â–¡</div>
           <div>
             <h2>Session Log</h2>
             <p>Record factual session items.</p>
           </div>
-          <button type="button" data-tool-action aria-label="Preview Session Log">›</button>
+          <button type="button" data-tool-action aria-label="Preview Session Log">â€º</button>
         </article>
 
         <article class="feature-card" data-tool-card data-tool-name="Meet Planner" data-tool-short="Meet Planner" data-tool-status="Locked" data-tool-mode="Reserved">
-          <div class="feature-icon">◇</div>
+          <div class="feature-icon">â—‡</div>
           <div>
             <h2>Meet Planner</h2>
             <p>Attempt-day timing and notes.</p>
           </div>
-          <button type="button" data-tool-action aria-label="Meet Planner locked">›</button>
+          <button type="button" data-tool-action aria-label="Meet Planner locked">â€º</button>
         </article>
 
         <article class="feature-card" data-tool-card data-tool-name="Load Sheet" data-tool-short="Load Sheet" data-tool-status="Locked" data-tool-mode="Reserved">
-          <div class="feature-icon">≡</div>
+          <div class="feature-icon">â‰¡</div>
           <div>
             <h2>Load Sheet</h2>
             <p>Equipment and work-item sheet.</p>
           </div>
-          <button type="button" data-tool-action aria-label="Load Sheet locked">›</button>
+          <button type="button" data-tool-action aria-label="Load Sheet locked">â€º</button>
         </article>
       </section>
 
       <section class="status-band" id="status">
         <div>
-          <span>⬡</span>
+          <span>â¬¡</span>
           <strong>PUBLIC SURFACE</strong>
           <p>Open utility layer.</p>
         </div>
         <div>
-          <span>▣</span>
+          <span>â–£</span>
           <strong>SINGLE ACTIVE TOOL</strong>
           <p>One selected card controls the panel.</p>
         </div>
         <div>
-          <span>◈</span>
+          <span>â—ˆ</span>
           <strong>CONSISTENT LAYOUT</strong>
           <p>Shared cards, spacing, and states.</p>
         </div>
         <div>
-          <span>▤</span>
+          <span>â–¤</span>
           <strong>PLATFORM-ADJACENT</strong>
           <p>Same visual system, lighter scope.</p>
         </div>
@@ -319,7 +322,7 @@
 
               <button class="button button-primary" type="submit">
                 Calculate
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </button>
             </form>
 
@@ -330,15 +333,15 @@
               <div class="result-grid">
                 <div>
                   <span>Block start</span>
-                  <strong id="blockStart">—</strong>
+                  <strong id="blockStart">â€”</strong>
                 </div>
                 <div>
                   <span>Taper start</span>
-                  <strong id="taperStart">—</strong>
+                  <strong id="taperStart">â€”</strong>
                 </div>
                 <div>
                   <span>Event date</span>
-                  <strong id="eventDateOut">—</strong>
+                  <strong id="eventDateOut">â€”</strong>
                 </div>
               </div>
             </div>
