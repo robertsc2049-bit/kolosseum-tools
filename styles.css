@@ -1692,3 +1692,279 @@
 }
 
 /* === TOOL INDEX HERO CLEANUP END === */
+
+/* === TOOLS INDEX RESPONSIVE OPTIMISATION START === */
+
+.tools-index-page main {
+  width: min(1240px, calc(100% - (var(--k-page-pad) * 2)));
+}
+
+.tools-index-page .topbar {
+  box-shadow: 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.tools-index-page .tool-index-hero {
+  min-height: auto;
+  align-items: flex-end;
+  padding: clamp(34px, 5vw, 64px) 0 clamp(18px, 2.2vw, 30px);
+}
+
+.tools-index-page .tool-index-hero > div {
+  min-width: 0;
+}
+
+.tools-index-page .tool-index-hero h1 {
+  max-width: 720px;
+  font-size: clamp(3rem, 5.2vw, 5.4rem);
+}
+
+.tools-index-page .tool-index-hero .lede {
+  max-width: 650px;
+  margin-top: 22px;
+  color: var(--k-muted);
+}
+
+.tools-index-page .tool-count-badge {
+  margin-bottom: 8px;
+}
+
+.tools-index-page .tool-index-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px 0 64px;
+}
+
+.tools-index-page .tool-index-card {
+  min-height: 184px;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  column-gap: 16px;
+  row-gap: 8px;
+  align-items: start;
+  padding: 22px;
+  border-radius: 12px;
+}
+
+.tools-index-page .tool-index-card .tool-icon {
+  grid-row: 1 / span 2;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+}
+
+.tools-index-page .tool-index-card div {
+  min-width: 0;
+}
+
+.tools-index-page .tool-index-card h2 {
+  margin: 0;
+  font-size: clamp(1.08rem, 1.2vw, 1.28rem);
+  line-height: 1.03;
+}
+
+.tools-index-page .tool-index-card p {
+  max-width: 260px;
+  margin-top: 10px;
+  color: var(--k-muted);
+  font-size: 0.92rem;
+  line-height: 1.42;
+}
+
+.tools-index-page .tool-index-card strong {
+  justify-self: end;
+  align-self: start;
+  min-height: 32px;
+  padding-inline: 14px;
+}
+
+.tools-index-page .tool-index-card:hover {
+  border-color: rgba(153,207,27,0.34);
+  box-shadow:
+    0 0 0 1px rgba(153,207,27,0.06),
+    0 18px 44px rgba(0,0,0,0.18),
+    0 0 22px rgba(153,207,27,0.07);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1180px) {
+  .tools-index-page main {
+    width: min(1040px, calc(100% - (var(--k-page-pad) * 2)));
+  }
+
+  .tools-index-page .tool-index-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .tools-index-page .tool-count-badge {
+    justify-self: start;
+    margin-bottom: 0;
+  }
+
+  .tools-index-page .tool-index-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tools-index-page .tool-index-card {
+    min-height: 168px;
+  }
+
+  .tools-index-page .tool-index-card p {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 900px) {
+  .tools-index-page main {
+    width: min(100%, calc(100% - 32px));
+  }
+
+  .tools-index-page .tool-index-hero {
+    padding-top: 34px;
+  }
+
+  .tools-index-page .tool-index-hero h1 {
+    max-width: 640px;
+    font-size: clamp(2.85rem, 9vw, 4.8rem);
+  }
+
+  .tools-index-page .tool-index-hero .lede {
+    max-width: 620px;
+    font-size: 1rem;
+  }
+
+  .tools-index-page .tool-index-grid {
+    gap: 12px;
+  }
+
+  .tools-index-page .tool-index-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    min-height: 158px;
+    padding: 18px;
+  }
+
+  .tools-index-page .tool-index-card .tool-icon {
+    grid-row: 1 / span 2;
+    width: 48px;
+    height: 48px;
+  }
+
+  .tools-index-page .tool-index-card strong {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 680px) {
+  .tools-index-page main {
+    width: calc(100% - 28px);
+  }
+
+  .tools-index-page .tool-index-hero {
+    padding-top: 28px;
+    padding-bottom: 14px;
+  }
+
+  .tools-index-page .breadcrumb {
+    margin-bottom: 18px;
+    font-size: 0.78rem;
+  }
+
+  .tools-index-page .kicker {
+    margin-bottom: 14px;
+  }
+
+  .tools-index-page .tool-index-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.45rem, 13vw, 3.7rem);
+    line-height: 0.96;
+  }
+
+  .tools-index-page .tool-index-hero .lede {
+    margin-top: 18px;
+    font-size: 0.96rem;
+    line-height: 1.48;
+  }
+
+  .tools-index-page .tool-count-badge {
+    min-height: 34px;
+    padding-inline: 13px;
+    font-size: 0.78rem;
+  }
+
+  .tools-index-page .tool-index-grid {
+    grid-template-columns: 1fr;
+    margin-top: 16px;
+    margin-bottom: 42px;
+  }
+
+  .tools-index-page .tool-index-card {
+    min-height: 128px;
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr;
+    column-gap: 14px;
+    padding: 16px;
+  }
+
+  .tools-index-page .tool-index-card .tool-icon {
+    grid-row: 1 / span 2;
+    width: 44px;
+    height: 44px;
+  }
+
+  .tools-index-page .tool-index-card h2 {
+    font-size: 1.05rem;
+  }
+
+  .tools-index-page .tool-index-card p {
+    max-width: none;
+    margin-top: 7px;
+    font-size: 0.86rem;
+    line-height: 1.38;
+  }
+
+  .tools-index-page .tool-index-card strong {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    margin-top: 0;
+    min-height: 28px;
+    padding-inline: 10px;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .tools-index-page main {
+    width: calc(100% - 24px);
+  }
+
+  .tools-index-page .tool-index-hero h1 {
+    font-size: clamp(2.25rem, 14vw, 3.25rem);
+  }
+
+  .tools-index-page .tool-index-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    min-height: 132px;
+  }
+
+  .tools-index-page .tool-index-card strong {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: start;
+    margin-top: 4px;
+  }
+
+  .tools-index-page .tool-index-card p {
+    font-size: 0.84rem;
+  }
+}
+
+/* === TOOLS INDEX RESPONSIVE OPTIMISATION END === */
