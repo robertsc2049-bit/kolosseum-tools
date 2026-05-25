@@ -1353,3 +1353,150 @@
 }
 
 /* === IRONCLOCK SELECTED BUTTON VISIBILITY END === */
+
+/* === IRONCLOCK MOBILE PLATE COLLAPSE START === */
+
+.plate-availability-section {
+  padding: 0;
+  overflow: hidden;
+}
+
+.plate-availability-toggle {
+  width: 100%;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 0;
+  padding: 16px;
+  color: var(--k-text);
+  background: transparent;
+  text-align: left;
+  cursor: default;
+}
+
+.plate-availability-toggle span:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.plate-availability-toggle strong {
+  font-family: var(--k-font-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.plate-availability-toggle small {
+  display: none;
+  color: var(--k-muted);
+  font-size: 0.78rem;
+  font-family: var(--k-font-ui);
+  letter-spacing: 0;
+}
+
+.plate-availability-indicator {
+  display: none;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(153,207,27,0.44);
+  border-radius: 999px;
+  color: var(--k-green);
+  background: rgba(153,207,27,0.035);
+  box-shadow: 0 0 14px rgba(153,207,27,0.08);
+  font-family: var(--k-font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.plate-availability-section.is-open .plate-availability-indicator {
+  transform: rotate(45deg);
+}
+
+.plate-availability-body {
+  padding: 0 16px 0;
+}
+
+.plate-availability-section #plateSummary {
+  padding: 0 16px 16px;
+}
+
+@media (min-width: 1081px) {
+  .plate-availability-section {
+    padding: 16px;
+  }
+
+  .plate-availability-toggle {
+    min-height: auto;
+    padding: 0;
+    margin: 0 0 12px;
+    pointer-events: none;
+  }
+
+  .plate-availability-toggle strong {
+    font-size: 1rem;
+  }
+
+  .plate-availability-body {
+    display: block !important;
+    padding: 0;
+  }
+
+  .plate-availability-section #plateSummary {
+    padding: 0;
+  }
+}
+
+@media (max-width: 1080px) {
+  .plate-availability-toggle {
+    cursor: pointer;
+  }
+
+  .plate-availability-toggle small,
+  .plate-availability-indicator {
+    display: grid;
+  }
+
+  .plate-availability-section:not(.is-open) .plate-availability-body {
+    display: none;
+  }
+
+  .plate-availability-section:not(.is-open) #plateSummary {
+    padding-bottom: 16px;
+  }
+
+  .plate-availability-section:not(.is-open) #plateSummary::before {
+    content: "Selected: ";
+    color: var(--k-green);
+    font-family: var(--k-font-display);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .plate-availability-section.is-open .plate-availability-body {
+    display: block;
+  }
+}
+
+@media (max-width: 680px) {
+  .plate-availability-body .plate-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .plate-availability-body .plate-toggle {
+    width: 100%;
+    min-height: 42px;
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .plate-availability-body .plate-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* === IRONCLOCK MOBILE PLATE COLLAPSE END === */

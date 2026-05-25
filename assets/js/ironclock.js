@@ -11,6 +11,9 @@ const roundingNote = document.getElementById("roundingNote");
 const barbellVisual = document.getElementById("barbellVisual");
 const plateList = document.getElementById("plateList");
 const plateSummary = document.getElementById("plateSummary");
+const plateAvailabilitySection = document.getElementById("plateAvailabilitySection");
+const plateAvailabilityToggle = document.getElementById("plateAvailabilityToggle");
+const plateAvailabilityToggleText = document.getElementById("plateAvailabilityToggleText");
 const barStatus = document.getElementById("barStatus");
 
 const barButtons = Array.from(document.querySelectorAll(".segment-btn"));
@@ -147,6 +150,41 @@ function updateBarStatus() {
   }
 }
 
+function setPlateAvailabilityPanel(open) {
+  if (!plateAvailabilitySection || !plateAvailabilityToggle) {
+    return;
+  }
+
+  plateAvailabilitySection.classList.toggle("is-open", open);
+  plateAvailabilityToggle.setAttribute("aria-expanded", open ? "true" : "false");
+
+  if (plateAvailabilityToggleText) {
+    plateAvailabilityToggleText.textContent = open ? "Tap to minimise" : "Tap to edit plates";
+  }
+}
+
+function initialisePlateAvailabilityPanel() {
+  if (!plateAvailabilitySection || !plateAvailabilityToggle) {
+    return;
+  }
+
+  const compactQuery = window.matchMedia("(max-width: 1080px)");
+
+  function applyDefaultState() {
+    setPlateAvailabilityPanel(!compactQuery.matches);
+  }
+
+  plateAvailabilityToggle.addEventListener("click", function () {
+    const isOpen = plateAvailabilitySection.classList.contains("is-open");
+    setPlateAvailabilityPanel(!isOpen);
+  });
+
+  if (typeof compactQuery.addEventListener === "function") {
+    compactQuery.addEventListener("change", applyDefaultState);
+  }
+
+  applyDefaultState();
+}
 function updatePlateSummary() {
   const plates = getAvailablePlates();
   plateSummary.textContent = "Available plates: " + plates.map(function (plate) {
@@ -624,6 +662,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+initialisePlateAvailabilityPanel();
 loadSavedPlateSettings();
 resetBarbellVisual();
 updateTimerDisplay();
