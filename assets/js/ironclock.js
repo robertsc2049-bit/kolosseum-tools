@@ -184,7 +184,7 @@ function getPlateClass(plate) {
   return "plate-small";
 }
 
-function renderBarbell(plates, unit = "kg") {
+function renderBarbell(plates) {
   barbellVisual.innerHTML = "";
 
   const shaft = document.createElement("div");
@@ -200,7 +200,7 @@ function renderBarbell(plates, unit = "kg") {
     plateEl.className = "bar-plate " + getPlateClass(plate);
 
     const label = document.createElement("span");
-    label.textContent = displayNumber(convertFromKg(plate, unit));
+    label.textContent = displayNumber(plate);
     plateEl.appendChild(label);
 
     barbellVisual.appendChild(plateEl);
@@ -216,35 +216,158 @@ function renderBarbell(plates, unit = "kg") {
   sleeveEnd.className = "bar-sleeve-end";
   barbellVisual.appendChild(sleeveEnd);
 }
+
+function calculateNearestPlateStack(targetKg, availablePlates) {
+  const sortedPlates = availablePlates
+    .map(Number)
+    .filter(function (plate) {
+      return Number.isFinite(plate) && plate > 0;
+    })
+    .sort(function (a, b) {
+      return b - a;
+    });
+
+  if (sortedPlates.length === 0) {
+    return {
+      plates: [],
+      perSideKg: 0,
+      loadedKg: barWeightKg + collarsKg
+    };
+  }
+
+  const targetPerSideKg = (targetKg - barWeightKg - collarsKg) / 2;
+
+  if (targetPerSideKg <= 0) {
+    return {
+      plates: [],
+      perSideKg: 0,
+      loadedKg: barWeightKg + collarsKg
+    };
+  }
+
+  const smallestPlate = Math.min.apply(null, sortedPlates);
+  const largestPlate = Math.max.apply(null, sortedPlates);
+  const scale = 100;
+
+  const targetUnits = Math.round(targetPerSideKg * scale);
+  const searchLimitUnits = Math.max(
+    0,
+    Math.ceil((targetPerSideKg + largestPlate) * scale)
+  );
+
+  const plateUnits = sortedPlates.map(function (plate) {
+    return Math.round(plate * scale);
+  });
+
+  const reachable = new Array(searchLimitUnits + 1).fill(false);
+  const previous = new Array(searchLimitUnits + 1).fill(null);
+
+  reachable[0] = true;
+
+  for (let current = 0; current <= searchLimitUnits; current += 1) {
+    if (!reachable[current]) {
+      continue;
+    }
+
+    for (let i = 0; i < plateUnits.length; i += 1) {
+      const next = current + plateUnits[i];
+
+      if (next <= searchLimitUnits && !reachable[next]) {
+        reachable[next] = true;
+        previous[next] = {
+          previous: current,
+          plate: sortedPlates[i]
+        };
+      }
+    }
+  }
+
+  let bestUnits = 0;
+  let bestDifference = Number.POSITIVE_INFINITY;
+
+  for (let current = 0; current <= searchLimitUnits; current += 1) {
+    if (!reachable[current]) {
+      continue;
+    }
+
+    const difference = Math.abs(current - targetUnits);
+
+    if (
+      difference < bestDifference ||
+      (difference === bestDifference && current < bestUnits)
+    ) {
+      bestDifference = difference;
+      bestUnits = current;
+    }
+  }
+
+  const plates = [];
+  let cursor = bestUnits;
+
+  while (cursor > 0 && previous[cursor]) {
+    plates.push(previous[cursor].plate);
+    cursor = previous[cursor].previous;
+  }
+
+  plates.sort(function (a, b) {
+    return b - a;
+  });
+
+  const perSideKg = bestUnits / scale;
+  const loadedKg = barWeightKg + collarsKg + (perSideKg * 2);
+
+  return {
+    plates,
+    perSideKg,
+    loadedKg
+  };
+}
+
 function renderResult(result) {
-  const loadedDisplay = convertFromKg(result.loadedKg, result.unit);
-  loadedWeight.textContent = displayNumber(loadedDisplay) + " " + result.unit;
+  loadedWeight.textContent = displayNumber(result.loadedKg) + " kg";
 
   exactStatus.textContent = result.exact ? "Exact" : "Rounded";
   exactStatus.classList.toggle("warning", !result.exact);
 
   if (result.exact) {
-    roundingNote.textContent = "Exact load available with selected plates.";
+    if (result.inputUnit === "lb") {
+      roundingNote.textContent = "Input target: " + displayNumber(result.targetInput) + " lb = " + displayNumber(result.targetKg) + " kg. Exact kg load available.";
+    }
+    else {
+      roundingNote.textContent = "Exact kg load available with selected plates.";
+    }
   }
   else {
-    const targetKg = convertToKg(result.targetInput, result.unit);
-    const difference = convertFromKg(result.loadedKg - targetKg, result.unit);
-    const direction = difference > 0 ? "up" : "down";
-    roundingNote.textContent = "Target cannot be loaded exactly with selected plates. Rounded " + direction + " by " + displayNumber(Math.abs(difference)) + " " + result.unit + ".";
+    const differenceKg = result.loadedKg - result.targetKg;
+    const direction = differenceKg > 0 ? "up" : "down";
+
+    if (result.inputUnit === "lb") {
+      roundingNote.textContent =
+        "Input target: " + displayNumber(result.targetInput) + " lb = " +
+        displayNumber(result.targetKg) + " kg. Nearest available kg load is " +
+        displayNumber(result.loadedKg) + " kg, rounded " + direction + " by " +
+        displayNumber(Math.abs(differenceKg)) + " kg.";
+    }
+    else {
+      roundingNote.textContent =
+        "Target cannot be loaded exactly with selected plates. Nearest available kg load is " +
+        displayNumber(result.loadedKg) + " kg, rounded " + direction + " by " +
+        displayNumber(Math.abs(differenceKg)) + " kg.";
+    }
   }
 
   const plateText = result.plates.length
     ? result.plates.map(function (plate) {
-        return displayNumber(convertFromKg(plate, result.unit)) + " " + result.unit;
+        return displayNumber(plate) + " kg";
       }).join(" + ")
     : "No plates per side";
 
   plateList.textContent = "Per side: " + plateText;
-  renderBarbell(result.plates, result.unit);
+  renderBarbell(result.plates);
 }
 
 function calculateLoad() {
-  const unit = unitSelect.value;
+  const inputUnit = unitSelect.value;
   const rawTarget = targetWeightInput.value.trim();
 
   if (barWeightKg <= 0) {
@@ -264,52 +387,24 @@ function calculateLoad() {
     return;
   }
 
-  const targetKg = convertToKg(targetInput, unit);
+  const targetKg = convertToKg(targetInput, inputUnit);
   const availablePlates = getAvailablePlates();
 
-  let remainingPerSide = (targetKg - barWeightKg - collarsKg) / 2;
-
-  if (remainingPerSide < 0 || availablePlates.length === 0) {
-    renderResult({
-      unit,
-      targetInput,
-      loadedKg: barWeightKg + collarsKg,
-      plates: [],
-      exact: false
-    });
-    updateBarStatus();
-    updatePlateSummary();
-    return;
-  }
-
-  const plates = [];
-
-  for (const plate of availablePlates) {
-    while (remainingPerSide + 0.0001 >= plate) {
-      plates.push(plate);
-      remainingPerSide -= plate;
-    }
-  }
-
-  const platesPerSideKg = plates.reduce(function (total, plate) {
-    return total + plate;
-  }, 0);
-
-  const loadedKg = barWeightKg + collarsKg + (platesPerSideKg * 2);
-  const exact = Math.abs(loadedKg - targetKg) < 0.001;
+  const nearest = calculateNearestPlateStack(targetKg, availablePlates);
+  const exact = Math.abs(nearest.loadedKg - targetKg) < 0.001;
 
   renderResult({
-    unit,
+    inputUnit,
     targetInput,
-    loadedKg,
-    plates,
+    targetKg,
+    loadedKg: nearest.loadedKg,
+    plates: nearest.plates,
     exact
   });
 
   updateBarStatus();
   updatePlateSummary();
 }
-
 function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
