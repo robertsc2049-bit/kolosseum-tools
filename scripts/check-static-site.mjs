@@ -5,6 +5,7 @@ const required = [
   "styles.css",
   "assets/css/kolosseum.master.css",
   "assets/js/tool-pages.js",
+  "assets/js/ironclock.js",
   "script.js",
   "package.json",
   "favicon.svg",
@@ -57,10 +58,12 @@ for (const file of required) {
 
 const html = readFileSync("index.html", "utf8");
 const toolsIndex = readFileSync("tools/index.html", "utf8");
+const ironclockHtml = readFileSync("tools/ironclock/index.html", "utf8");
 const cssAdapter = readFileSync("styles.css", "utf8");
 const cssMaster = readFileSync("assets/css/kolosseum.master.css", "utf8");
 const css = `${cssAdapter}\n${cssMaster}`;
 const toolPagesJs = readFileSync("assets/js/tool-pages.js", "utf8");
+const ironclockJs = readFileSync("assets/js/ironclock.js", "utf8");
 
 const requiredHtmlFragments = [
   "viewport",
@@ -75,7 +78,7 @@ const requiredHtmlFragments = [
 
 for (const fragment of requiredHtmlFragments) {
   if (!html.includes(fragment)) {
-    throw new Error(`Missing expected HTML fragment: ${fragment}`);
+    throw new Error(`Missing expected landing HTML fragment: ${fragment}`);
   }
 }
 
@@ -95,6 +98,22 @@ for (const fragment of requiredToolsIndexFragments) {
   }
 }
 
+const requiredIronClockHtmlFragments = [
+  "IronClock",
+  "../../assets/js/ironclock.js",
+  "targetWeightInput",
+  "barbellVisual",
+  "timerDisplay",
+  "shareToolBtn",
+  "timerOverlay"
+];
+
+for (const fragment of requiredIronClockHtmlFragments) {
+  if (!ironclockHtml.includes(fragment)) {
+    throw new Error(`Missing expected IronClock HTML fragment: ${fragment}`);
+  }
+}
+
 const requiredCssFragments = [
   "@media (max-width: 1320px)",
   "@media (max-width: 1080px)",
@@ -102,7 +121,8 @@ const requiredCssFragments = [
   "@media (max-width: 560px)",
   "overflow-x: hidden",
   "#99cf1b",
-  "TOOL PAGES START"
+  "TOOL PAGES START",
+  "IRONCLOCK PAGE START"
 ];
 
 for (const fragment of requiredCssFragments) {
@@ -127,6 +147,22 @@ const requiredToolJsFragments = [
 for (const fragment of requiredToolJsFragments) {
   if (!toolPagesJs.includes(fragment)) {
     throw new Error(`Missing expected tool page JS fragment: ${fragment}`);
+  }
+}
+
+const requiredIronClockJsFragments = [
+  "calculateLoad",
+  "renderBarbell",
+  "shareTool",
+  "startTimer",
+  "timerOverlay",
+  "PLATE_SETTINGS_KEY",
+  "KG_TO_LB"
+];
+
+for (const fragment of requiredIronClockJsFragments) {
+  if (!ironclockJs.includes(fragment)) {
+    throw new Error(`Missing expected IronClock JS fragment: ${fragment}`);
   }
 }
 

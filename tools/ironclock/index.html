@@ -4,13 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IronClock | Kolosseum Tools</title>
-  <meta name="description" content="Build a simple work, rest, and rounds timer for focused training blocks.">
+  <meta name="description" content="Free barbell loading calculator and rest timer for lifters, coaches, gyms, and strength training sessions.">
   <meta name="theme-color" content="#050607">
+  <link rel="canonical" href="https://robertsc2049-bit.github.io/kolosseum-tools/tools/ironclock/">
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../styles.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IronClock | Kolosseum Tools">
+  <meta property="og:description" content="Free barbell loading calculator and rest timer.">
+  <meta property="og:url" content="https://robertsc2049-bit.github.io/kolosseum-tools/tools/ironclock/">
+  <meta property="og:site_name" content="Kolosseum Tools">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IronClock",
+  "url": "https://robertsc2049-bit.github.io/kolosseum-tools/tools/ironclock/",
+  "description": "Free barbell loading calculator and rest timer.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kolosseum Tools",
+    "url": "https://robertsc2049-bit.github.io/kolosseum-tools/"
+  }
+}
+  </script>
 </head>
 <body data-tool-page="ironclock">
   <div class="site-shell">
@@ -24,23 +53,23 @@
       <nav class="nav" aria-label="Primary navigation">
         <a href="../../">Home</a>
         <a href="../">Tools</a>
-        <a href="../../#workflow">Workflow</a>
-        <a href="../../#status">Status</a>
+        <a href="../event-block-calculator/">Event Block</a>
+        <a href="../load-sheet/">Load Sheet</a>
       </nav>
 
-      <a class="nav-cta" href="../">Tool Index</a>
+      <button class="nav-cta nav-share" type="button" id="shareToolBtn">Share</button>
     </header>
 
     <main>
-      <section class="tool-page-hero">
+      <section class="tool-page-hero ironclock-hero">
         <div>
           <p class="breadcrumb"><a href="../../">Home</a> / <a href="../">Tools</a> / IronClock</p>
-          <p class="kicker">SESSION TIMER</p>
+          <p class="kicker">BARBELL CALCULATOR + REST TIMER</p>
           <h1>IronClock</h1>
-          <p class="lede">Build a simple work, rest, and rounds timer for focused training blocks.</p>
+          <p class="lede">Calculate barbell loading, check plate setup, and run a focused rest timer without switching apps.</p>
           <div class="hero-note">
             <span class="note-mark"></span>
-            <span>Use this page when you need a direct timing surface without account setup or excess controls.</span>
+            <span>Built for fast use on desktop, tablet, and phone.</span>
           </div>
         </div>
 
@@ -49,28 +78,142 @@
           <div>
             <span class="panel-label">TOOL STATUS</span>
             <strong>Live</strong>
-            <p>IronClock utility page.</p>
+            <p>Barbell loading and rest timing.</p>
           </div>
         </aside>
       </section>
 
-      <section class="tool-page-layout">
-        <section class="active-panel">
+      <section class="ironclock-grid">
+        <section class="active-panel ironclock-calculator" id="calculatorPanel">
           <div class="active-header">
             <div>
-              <p class="kicker">ACTIVE TOOL</p>
-              <h2>IronClock</h2>
+              <p class="kicker">LOADING TOOL</p>
+              <h2>Barbell loading</h2>
             </div>
-            <span>Live</span>
+            <span id="exactStatus">Unset</span>
           </div>
 
-          <div id="toolPageHost" class="tool-function-host" aria-live="polite"></div>
+          <div class="ironclock-form-grid">
+            <label class="tool-field">
+              <span>Target weight</span>
+              <input id="targetWeightInput" type="number" inputmode="decimal" min="0" step="0.5" placeholder="Enter weight">
+            </label>
+
+            <label class="tool-field">
+              <span>Unit</span>
+              <select id="unitSelect">
+                <option value="kg" selected>kg</option>
+                <option value="lb">lb</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="ironclock-section">
+            <h3>Bar weight</h3>
+            <div class="segmented">
+              <button class="segment-btn" type="button" data-bar="20">20kg bar</button>
+              <button class="segment-btn" type="button" data-bar="25">25kg bar</button>
+            </div>
+            <p class="helper-text" id="barStatus">Bar not selected. Current bar weight: 0kg.</p>
+          </div>
+
+          <div class="ironclock-section">
+            <h3>Collars</h3>
+            <div class="segmented">
+              <button class="collar-btn active" type="button" data-collars="0">Not included</button>
+              <button class="collar-btn" type="button" data-collars="5">5kg pair</button>
+            </div>
+          </div>
+
+          <div class="ironclock-section">
+            <h3>Quick plate availability</h3>
+            <div class="plate-options">
+              <button class="plate-toggle quick-plate active" type="button" data-plate="25">25kg</button>
+              <button class="plate-toggle quick-plate active" type="button" data-plate="20">20kg</button>
+              <button class="plate-toggle quick-plate active" type="button" data-plate="15">15kg</button>
+              <button class="plate-toggle quick-plate active" type="button" data-plate="10">10kg</button>
+              <button class="plate-toggle quick-plate active" type="button" data-plate="5">5kg</button>
+              <button class="plate-toggle quick-plate active" type="button" data-plate="2.5">2.5kg</button>
+              <button class="plate-toggle quick-plate active" type="button" data-plate="1.25">1.25kg</button>
+              <button class="plate-toggle quick-plate" type="button" data-plate="0.5">0.5kg</button>
+              <button class="plate-toggle quick-plate" type="button" data-plate="0.25">0.25kg</button>
+            </div>
+            <p class="helper-text" id="plateSummary"></p>
+          </div>
+
+          <div class="ironclock-result-card">
+            <div class="result-top">
+              <div>
+                <span class="result-label">Closest load</span>
+                <strong id="loadedWeight">0 kg</strong>
+              </div>
+            </div>
+
+            <p class="rounding-note" id="roundingNote">Select a bar and enter a target weight.</p>
+
+            <div class="barbell-wrap">
+              <div class="barbell" id="barbellVisual" aria-label="Barbell plate visual">
+                <div class="barbell-placeholder">Select bar</div>
+              </div>
+            </div>
+
+            <div class="plate-list" id="plateList">Per side: no plates selected</div>
+          </div>
         </section>
+
+        <aside class="active-panel ironclock-timer" id="timerPanel">
+          <div class="active-header">
+            <div>
+              <p class="kicker">REST TIMER</p>
+              <h2>Clock</h2>
+            </div>
+            <span id="timerStatus">Ready</span>
+          </div>
+
+          <div class="timer-display" id="timerDisplay">03:00</div>
+
+          <div class="timer-buttons">
+            <button class="time-preset" type="button" data-seconds="60">1:00</button>
+            <button class="time-preset" type="button" data-seconds="120">2:00</button>
+            <button class="time-preset active" type="button" data-seconds="180">3:00</button>
+            <button class="time-preset" type="button" data-seconds="300">5:00</button>
+          </div>
+
+          <div class="ironclock-form-grid timer-custom-grid">
+            <label class="tool-field">
+              <span>Custom minutes</span>
+              <input id="customMinutesInput" type="number" inputmode="numeric" min="0" step="1" value="3">
+            </label>
+
+            <label class="tool-field">
+              <span>Custom seconds</span>
+              <input id="customSecondsInput" type="number" inputmode="numeric" min="0" max="59" step="1" value="0">
+            </label>
+          </div>
+
+          <div class="tool-actions">
+            <button class="button button-primary" type="button" id="startPauseBtn">Start</button>
+            <button class="button button-secondary" type="button" id="resetTimerBtn">Reset</button>
+            <button class="button button-secondary" type="button" id="maximiseTimerBtn">Maximise</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="workflow-section">
+        <div class="workflow-card">
+          <p class="kicker">IRONCLOCK FLOW</p>
+          <h2>Select bar. Enter target. Check load. Run timer.</h2>
+          <div class="workflow-line">
+            <div><span>01</span><strong>Bar</strong><p>Choose the bar and collar setup.</p></div>
+            <div><span>02</span><strong>Plates</strong><p>Toggle what is available.</p></div>
+            <div class="is-active"><span>03</span><strong>Load</strong><p>Read the closest achievable setup.</p></div>
+            <div><span>04</span><strong>Clock</strong><p>Start rest timing.</p></div>
+          </div>
+        </div>
 
         <aside class="tool-nav-card">
           <p class="kicker">OTHER TOOLS</p>
           <a href="../event-block-calculator/">Event Block Calculator</a>
-          <a href="../ironclock/">IronClock</a>
           <a href="../gym-share/">Gym Share</a>
           <a href="../session-log/">Session Log</a>
           <a href="../meet-planner/">Meet Planner</a>
@@ -80,6 +223,19 @@
     </main>
   </div>
 
-  <script src="../../assets/js/tool-pages.js"></script>
+  <div class="timer-overlay" id="timerOverlay" aria-hidden="true">
+    <div class="timer-overlay-card">
+      <button class="overlay-close" type="button" id="closeOverlayBtn">Close</button>
+      <div class="overlay-title">Rest timer</div>
+      <div class="overlay-time" id="overlayTimerDisplay">03:00</div>
+
+      <div class="tool-actions">
+        <button class="button button-primary" type="button" id="overlayStartPauseBtn">Start</button>
+        <button class="button button-secondary" type="button" id="overlayResetBtn">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/ironclock.js"></script>
 </body>
 </html>
