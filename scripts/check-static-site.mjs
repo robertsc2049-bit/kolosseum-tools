@@ -1,6 +1,12 @@
-import { readFileSync, existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
-const required = ["index.html", "styles.css", "script.js"];
+const required = [
+  "index.html",
+  "styles.css",
+  "script.js",
+  "package.json",
+  "favicon.svg"
+];
 
 const forbidden = [
   /\bbest\b/i,
@@ -25,6 +31,10 @@ for (const file of required) {
 
   const text = readFileSync(file, "utf8");
 
+  if (text.charCodeAt(0) === 0xfeff) {
+    throw new Error(`BOM found in ${file}`);
+  }
+
   for (const pattern of forbidden) {
     if (pattern.test(text)) {
       throw new Error(`Forbidden wording matched ${pattern} in ${file}`);
@@ -35,5 +45,41 @@ for (const file of required) {
     throw new Error(`Non-ASCII character found in ${file}`);
   }
 }
+
+const html = readFileSync("index.html", "utf8");
+
+const requiredFragments = [
+  "viewport",
+  "favicon.svg",
+  "data-tool-card",
+  "Event Block Calculator",
+  "copyResultButton",
+  "assets/icons/"
+];
+
+for (const fragment of requiredFragments) {
+  if (!html.includes(fragment)) {
+    throw new Error(`Missing expected HTML fragment: ${fragment}`);
+  }
+}
+
+const css = readFileSync("styles.css", "utf8");
+
+const requiredCss = [
+  "@media (max-width: 1320px)",
+  "@media (max-width: 1080px)",
+  "@media (max-width: 820px)",
+  "@media (max-width: 560px)",
+  "overflow-x: hidden",
+  "--green: #99cf1b"
+];
+
+for (const fragment of requiredCss) {
+  if (!css.includes(fragment)) {
+    throw new Error(`Missing expected CSS fragment: ${fragment}`);
+  }
+}
+
+JSON.parse(readFileSync("package.json", "utf8"));
 
 console.log("Static site check passed.");

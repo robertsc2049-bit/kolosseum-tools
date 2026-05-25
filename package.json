@@ -1,13 +1,13 @@
 {
-    "version":  "0.1.0",
-    "name":  "kolosseum-tools",
-    "description":  "Public tools surface for Kolosseum.",
-    "scripts":  {
-                    "start":  "npx serve .",
-                    "check":  "node ./scripts/check-static-site.mjs"
-                },
-    "devDependencies":  {
-                            "serve":  "^14.2.4"
-                        },
-    "private":  true
+  "name": "kolosseum-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public tools surface for Kolosseum.",
+  "scripts": {
+    "start": "npx serve .",
+    "check": "node ./scripts/check-static-site.mjs"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
 }

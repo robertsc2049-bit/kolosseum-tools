@@ -11,6 +11,9 @@ const blockStart = document.getElementById("blockStart");
 const taperStart = document.getElementById("taperStart");
 const eventDateOut = document.getElementById("eventDateOut");
 const form = document.getElementById("eventBlockForm");
+const copyResultButton = document.getElementById("copyResultButton");
+
+let lastResultText = "";
 
 function setText(element, value) {
   if (element) {
@@ -19,6 +22,8 @@ function setText(element, value) {
 }
 
 function clearResultForTool(name) {
+  lastResultText = "";
+
   if (name === "Event Block Calculator") {
     setText(resultState, "AWAITING INPUT");
     setText(resultTitle, "Choose an event date to generate block dates.");
@@ -75,6 +80,15 @@ function addDays(date, days) {
   return copy;
 }
 
+function buildResultText(values) {
+  return [
+    "Kolosseum Tools - Event Block Calculator",
+    "Block start: " + values.blockStart,
+    "Taper start: " + values.taperStart,
+    "Event date: " + values.eventDate
+  ].join("\n");
+}
+
 if (form) {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -91,6 +105,8 @@ if (form) {
     const taperLengthInput = document.getElementById("taperLength");
 
     if (!eventDateInput || !eventDateInput.value || !blockLengthInput || !taperLengthInput) {
+      setText(resultState, "INPUT REQUIRED");
+      setText(resultTitle, "Enter an event date before calculating.");
       return;
     }
 
@@ -98,14 +114,46 @@ if (form) {
     const blockWeeks = Number(blockLengthInput.value);
     const taperWeeks = Number(taperLengthInput.value);
 
+    if (Number.isNaN(eventDate.getTime()) || Number.isNaN(blockWeeks) || Number.isNaN(taperWeeks)) {
+      setText(resultState, "INVALID INPUT");
+      setText(resultTitle, "Check the entered values and calculate again.");
+      return;
+    }
+
     const calculatedBlockStart = addDays(eventDate, -(blockWeeks * 7));
     const calculatedTaperStart = addDays(eventDate, -(taperWeeks * 7));
 
+    const values = {
+      blockStart: formatDate(calculatedBlockStart),
+      taperStart: taperWeeks === 0 ? "No taper" : formatDate(calculatedTaperStart),
+      eventDate: formatDate(eventDate)
+    };
+
     setText(resultState, "CALCULATED");
     setText(resultTitle, String(blockWeeks) + "-week block generated for the selected event date.");
-    setText(blockStart, formatDate(calculatedBlockStart));
-    setText(taperStart, taperWeeks === 0 ? "No taper" : formatDate(calculatedTaperStart));
-    setText(eventDateOut, formatDate(eventDate));
+    setText(blockStart, values.blockStart);
+    setText(taperStart, values.taperStart);
+    setText(eventDateOut, values.eventDate);
+
+    lastResultText = buildResultText(values);
+  });
+}
+
+if (copyResultButton) {
+  copyResultButton.addEventListener("click", async function () {
+    if (!lastResultText) {
+      setText(resultState, "AWAITING INPUT");
+      setText(resultTitle, "Calculate a result before copying.");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(lastResultText);
+      setText(resultState, "COPIED");
+    }
+    catch {
+      setText(resultState, "COPY UNAVAILABLE");
+    }
   });
 }
 
