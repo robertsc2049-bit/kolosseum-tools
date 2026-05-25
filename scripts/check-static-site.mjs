@@ -1,4 +1,4 @@
-﻿import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 
 const required = ["index.html", "styles.css", "script.js"];
 const forbidden = [
@@ -15,6 +15,8 @@ const forbidden = [
   /\bmedical\b/i
 ];
 
+const nonAscii = /[\u0080-\uFFFF]/;
+
 for (const file of required) {
   if (!existsSync(file)) {
     throw new Error(`Missing required file: ${file}`);
@@ -26,6 +28,10 @@ for (const file of required) {
     if (pattern.test(text)) {
       throw new Error(`Forbidden wording matched ${pattern} in ${file}`);
     }
+  }
+
+  if (nonAscii.test(text)) {
+    throw new Error(`Non-ASCII character found in ${file}`);
   }
 }
 

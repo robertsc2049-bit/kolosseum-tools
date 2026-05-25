@@ -16,17 +16,17 @@ function clearResultForTool(name) {
   if (name === "Event Block Calculator") {
     resultState.textContent = "AWAITING INPUT";
     resultTitle.textContent = "Choose an event date to generate block dates.";
-    blockStart.textContent = "—";
-    taperStart.textContent = "—";
-    eventDateOut.textContent = "—";
+    blockStart.textContent = """;
+    taperStart.textContent = """;
+    eventDateOut.textContent = """;
     return;
   }
 
   resultState.textContent = "TOOL SELECTED";
   resultTitle.textContent = "This tool slot is ready for its functional implementation.";
-  blockStart.textContent = "—";
-  taperStart.textContent = "—";
-  eventDateOut.textContent = "—";
+  blockStart.textContent = """;
+  taperStart.textContent = """;
+  eventDateOut.textContent = """;
 }
 
 function selectTool(card, shouldScroll = true) {
