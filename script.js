@@ -35,7 +35,7 @@ function clearResultForTool(name) {
   setText(eventDateOut, "-");
 }
 
-function selectTool(card, shouldScroll) {
+function selectTool(card) {
   for (const item of cards) {
     item.classList.remove("is-selected");
   }
@@ -53,18 +53,11 @@ function selectTool(card, shouldScroll) {
   setText(activeToolStatus, status);
 
   clearResultForTool(name);
-
-  if (shouldScroll) {
-    const activeSection = document.querySelector(".active-section");
-    if (activeSection) {
-      activeSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
 }
 
 for (const card of cards) {
   card.addEventListener("click", function () {
-    selectTool(card, true);
+    selectTool(card);
   });
 }
 
@@ -118,5 +111,5 @@ if (form) {
 
 const initialCard = document.querySelector("[data-tool-card].is-selected");
 if (initialCard) {
-  selectTool(initialCard, false);
+  selectTool(initialCard);
 }

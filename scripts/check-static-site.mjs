@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from "node:fs";
 
 const required = ["index.html", "styles.css", "script.js"];
+
 const forbidden = [
   /\bbest\b/i,
   /\boptimise\b/i,
