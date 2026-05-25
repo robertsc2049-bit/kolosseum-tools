@@ -40,7 +40,7 @@ let timerInterval = null;
 let timerRunning = false;
 
 function roundTo(value, decimals = 2) {
-  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+  return Number(Number(value).toFixed(decimals));
 }
 
 function displayNumber(value) {
@@ -174,47 +174,78 @@ function resetBarbellVisual(message = "Select a bar and enter a target weight.")
   updatePlateSummary();
 }
 
-function getPlateClass(plate) {
-  if (plate >= 25) return "plate-red";
-  if (plate >= 20) return "plate-blue";
-  if (plate >= 15) return "plate-yellow";
-  if (plate >= 10) return "plate-green";
-  if (plate >= 5) return "plate-white";
-  if (plate >= 2.5) return "plate-black";
-  return "plate-small";
+function getPlateVisual(plate) {
+  if (plate >= 25) return { className: "plate-red",   width: 30, height: 142 };
+  if (plate >= 20) return { className: "plate-blue",  width: 28, height: 134 };
+  if (plate >= 15) return { className: "plate-yellow", width: 26, height: 126 };
+  if (plate >= 10) return { className: "plate-green", width: 24, height: 116 };
+  if (plate >= 5)  return { className: "plate-white", width: 18, height: 102 };
+  if (plate >= 2.5) return { className: "plate-black", width: 14, height: 88 };
+  return { className: "plate-small", width: 10, height: 72 };
+}
+
+function createPlateElement(plate, unit) {
+  const visual = getPlateVisual(plate);
+
+  const plateEl = document.createElement("div");
+  plateEl.className = "bar-plate " + visual.className;
+  plateEl.style.width = visual.width + "px";
+  plateEl.style.height = visual.height + "px";
+
+  const label = document.createElement("span");
+  label.className = "plate-label";
+  label.textContent = displayNumber(convertFromKg(plate, unit));
+
+  plateEl.appendChild(label);
+  return plateEl;
 }
 
 function renderBarbell(plates, unit = "kg") {
   barbellVisual.innerHTML = "";
 
-  const shaft = document.createElement("div");
-  shaft.className = "bar-shaft";
-  barbellVisual.appendChild(shaft);
+  const track = document.createElement("div");
+  track.className = "bar-track";
 
-  const sleeve = document.createElement("div");
-  sleeve.className = "bar-sleeve";
-  barbellVisual.appendChild(sleeve);
+  const trackLine = document.createElement("div");
+  trackLine.className = "bar-track-line";
+  track.appendChild(trackLine);
+
+  const assembly = document.createElement("div");
+  assembly.className = "bar-assembly";
+
+  const shaft = document.createElement("div");
+  shaft.className = "bar-shaft-left";
+  assembly.appendChild(shaft);
+
+  const innerSleeve = document.createElement("div");
+  innerSleeve.className = "bar-inner-sleeve";
+  assembly.appendChild(innerSleeve);
+
+  const plateStack = document.createElement("div");
+  plateStack.className = "bar-plate-stack";
 
   plates.forEach(function (plate) {
-    const plateEl = document.createElement("div");
-    plateEl.className = "bar-plate " + getPlateClass(plate);
-
-    const label = document.createElement("span");
-    label.textContent = displayNumber(convertFromKg(plate, unit));
-    plateEl.appendChild(label);
-
-    barbellVisual.appendChild(plateEl);
+    plateStack.appendChild(createPlateElement(plate, unit));
   });
 
+  assembly.appendChild(plateStack);
+
   if (collarsKg > 0) {
-    const collar = document.createElement("div");
-    collar.className = "bar-collar";
-    barbellVisual.appendChild(collar);
+    const weightedCollar = document.createElement("div");
+    weightedCollar.className = "bar-weighted-collar";
+    assembly.appendChild(weightedCollar);
   }
+
+  const lockCollar = document.createElement("div");
+  lockCollar.className = "bar-lock-collar";
+  assembly.appendChild(lockCollar);
 
   const sleeveEnd = document.createElement("div");
   sleeveEnd.className = "bar-sleeve-end";
-  barbellVisual.appendChild(sleeveEnd);
+  assembly.appendChild(sleeveEnd);
+
+  track.appendChild(assembly);
+  barbellVisual.appendChild(track);
 }
 
 function renderResult(result) {
@@ -236,8 +267,8 @@ function renderResult(result) {
 
   const plateText = result.plates.length
     ? result.plates.map(function (plate) {
-      return displayNumber(convertFromKg(plate, result.unit)) + " " + result.unit;
-    }).join(" + ")
+        return displayNumber(convertFromKg(plate, result.unit)) + " " + result.unit;
+      }).join(" + ")
     : "No plates per side";
 
   plateList.textContent = "Per side: " + plateText;
@@ -296,7 +327,7 @@ function calculateLoad() {
     return total + plate;
   }, 0);
 
-  const loadedKg = barWeightKg + collarsKg + platesPerSideKg * 2;
+  const loadedKg = barWeightKg + collarsKg + (platesPerSideKg * 2);
   const exact = Math.abs(loadedKg - targetKg) < 0.001;
 
   renderResult({
@@ -476,7 +507,7 @@ document.querySelectorAll(".time-preset").forEach(function (button) {
       preset.classList.remove("active");
     });
 
-    setTimer(minutes * 60 + seconds);
+    setTimer((minutes * 60) + seconds);
   });
 });
 
