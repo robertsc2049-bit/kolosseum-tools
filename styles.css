@@ -1572,3 +1572,120 @@ select {
 }
 
 /* === KOLOSSEUM FONT MATCH OVERRIDE END === */
+
+/* === KOLOSSEUM BRAND ALIGNMENT TUNE START === */
+
+.brand {
+  position: relative;
+  display: inline-grid;
+  justify-items: center;
+  align-items: start;
+  text-align: center;
+  gap: 4px;
+  width: max-content;
+  padding-left: 0;
+  transform: none;
+}
+
+.brand::after {
+  display: none;
+}
+
+.brand-word {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.92rem, 2.45vw, 2.55rem);
+  font-weight: 700;
+  line-height: 0.74;
+  letter-spacing: 0.025em;
+  color: #f1f3ee;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.18),
+    0 0 7px rgba(255,255,255,0.18),
+    0 0 18px rgba(255,255,255,0.08);
+}
+
+.brand-line {
+  position: relative;
+  display: block;
+  align-self: center;
+  width: 88px;
+  height: 4px;
+  margin: 6px 0 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a8e126 0%, #97cd1d 45%, #7ab216 100%);
+  box-shadow:
+    0 0 8px rgba(153,207,27,0.95),
+    0 0 18px rgba(153,207,27,0.62),
+    0 0 38px rgba(153,207,27,0.26);
+}
+
+.brand-line::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 124px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(ellipse, rgba(153,207,27,0.42) 0%, rgba(153,207,27,0.16) 42%, transparent 74%);
+  filter: blur(9px);
+  pointer-events: none;
+}
+
+.brand-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 94px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(ellipse, rgba(191,235,82,0.58) 0%, rgba(153,207,27,0.16) 62%, transparent 80%);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.brand-sub {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.56em;
+  color: #9bd21a;
+  text-shadow:
+    0 0 7px rgba(153,207,27,0.26),
+    0 0 16px rgba(153,207,27,0.12);
+}
+
+@media (max-width: 720px) {
+  .brand {
+    gap: 3px;
+  }
+
+  .brand-word {
+    font-size: 1.9rem;
+  }
+
+  .brand-line {
+    width: 82px;
+  }
+
+  .brand-sub {
+    font-size: 0.78rem;
+    letter-spacing: 0.5em;
+  }
+}
+
+/* === KOLOSSEUM BRAND ALIGNMENT TUNE END === */
