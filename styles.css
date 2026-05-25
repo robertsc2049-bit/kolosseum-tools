@@ -1968,3 +1968,83 @@
 }
 
 /* === TOOLS INDEX RESPONSIVE OPTIMISATION END === */
+
+/* === TOOLS INDEX MOBILE OVERFLOW FIX START === */
+
+.tools-index-page,
+.tools-index-page main,
+.tools-index-page .tool-index-hero,
+.tools-index-page .tool-index-hero > div,
+.tools-index-page .tool-index-grid,
+.tools-index-page .tool-index-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tools-index-page .tool-index-hero h1,
+.tools-index-page .tool-index-hero .lede,
+.tools-index-page .tool-index-card h2,
+.tools-index-page .tool-index-card p {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+@media (max-width: 680px) {
+  .tools-index-page main {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+
+  .tools-index-page .tool-index-hero {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .tools-index-page .tool-index-hero h1 {
+    font-size: clamp(2.25rem, 11vw, 3.15rem);
+    line-height: 0.98;
+    letter-spacing: -0.058em;
+  }
+
+  .tools-index-page .tool-index-hero .lede {
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-index-page main {
+    width: calc(100% - 22px);
+    max-width: calc(100% - 22px);
+  }
+
+  .tools-index-page .tool-index-hero h1 {
+    font-size: clamp(2.05rem, 10.2vw, 2.85rem);
+    line-height: 1;
+    letter-spacing: -0.052em;
+  }
+
+  .tools-index-page .tool-index-hero .lede {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 390px) {
+  .tools-index-page main {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+
+  .tools-index-page .tool-index-hero h1 {
+    font-size: clamp(1.9rem, 9.6vw, 2.55rem);
+  }
+
+  .tools-index-page .tool-count-badge {
+    min-height: 32px;
+    padding-inline: 12px;
+    font-size: 0.74rem;
+  }
+}
+
+/* === TOOLS INDEX MOBILE OVERFLOW FIX END === */
