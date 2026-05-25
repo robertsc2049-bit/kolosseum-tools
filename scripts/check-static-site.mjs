@@ -57,7 +57,7 @@ const requiredHtmlFragments = [
   "favicon.svg",
   "data-tool-card",
   "Event Block Calculator",
-  "copyResultButton",
+  "toolFunctionHost",
   "assets/icons/",
   "./styles.css"
 ];

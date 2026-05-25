@@ -216,7 +216,8 @@
         <div><span>PA</span><strong>PLATFORM-ADJACENT</strong><p>Same visual system, lighter scope.</p></div>
       </section>
 
-      <section class="active-panel">
+
+      <section class="active-panel" id="active-tool-panel">
         <div class="active-header">
           <div>
             <p class="kicker">ACTIVE TOOL</p>
@@ -225,49 +226,8 @@
           <span id="active-tool-status">Live</span>
         </div>
 
-        <div class="calculator-grid">
-          <form class="calculator-form" id="eventBlockForm">
-            <label>
-              Event date
-              <input type="date" id="eventDate" required>
-            </label>
-
-            <label>
-              Block length
-              <select id="blockLength">
-                <option value="4">4 weeks</option>
-                <option value="6" selected>6 weeks</option>
-                <option value="8">8 weeks</option>
-                <option value="10">10 weeks</option>
-                <option value="12">12 weeks</option>
-              </select>
-            </label>
-
-            <label>
-              Taper length
-              <select id="taperLength">
-                <option value="0">None</option>
-                <option value="1" selected>1 week</option>
-                <option value="2">2 weeks</option>
-              </select>
-            </label>
-
-            <button class="button button-primary" type="submit">Calculate <span>+</span></button>
-          </form>
-
-          <div class="result-card">
-            <p class="kicker" id="resultState">AWAITING INPUT</p>
-            <h3 id="resultTitle">Choose an event date to generate block dates.</h3>
-            <div class="result-grid">
-              <div><span>Block start</span><strong id="blockStart">-</strong></div>
-              <div><span>Taper start</span><strong id="taperStart">-</strong></div>
-              <div><span>Event date</span><strong id="eventDateOut">-</strong></div>
-            </div>
-            <button class="button button-secondary copy-button" id="copyResultButton" type="button">Copy Result</button>
-          </div>
-        </div>
+        <div id="toolFunctionHost" class="tool-function-host" aria-live="polite"></div>
       </section>
-
       <section class="workflow-section" id="workflow">
         <div class="workflow-card">
           <p class="kicker">UTILITY FLOW</p>
