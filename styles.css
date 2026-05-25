@@ -4437,3 +4437,79 @@
 }
 
 /* === ACTIVE TOOL PANEL FIT END === */
+
+/* === EVENT BLOCK ACTIVE PANEL RECOVERY START === */
+
+.event-block-page main {
+  width: min(var(--contentMax), calc(100% - (var(--pagePad) * 2)));
+  margin-inline: auto;
+}
+
+.event-block-page .event-block-active-panel {
+  width: min(100%, 1120px) !important;
+  max-width: 1120px !important;
+  margin-inline: 0 auto !important;
+}
+
+.event-block-page .event-block-active-panel > * {
+  min-width: 0;
+}
+
+.event-block-page .event-block-active-panel .calculator-grid,
+.event-block-page .event-block-active-panel [class*="calculator-grid"] {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+.event-block-page .event-block-active-panel .tool-form,
+.event-block-page .event-block-active-panel .tool-result-card,
+.event-block-page .event-block-active-panel [class*="form"],
+.event-block-page .event-block-active-panel [class*="result"] {
+  min-width: 0 !important;
+}
+
+.event-block-page .event-block-active-panel .tool-result-card,
+.event-block-page .event-block-active-panel [class*="result-card"] {
+  width: 100% !important;
+}
+
+.event-block-page .event-block-active-panel .result-grid,
+.event-block-page .event-block-active-panel [class*="result-grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.event-block-page .event-block-active-panel .copy-button,
+.event-block-page .event-block-active-panel button[id*="copy"],
+.event-block-page .event-block-active-panel button[class*="copy"] {
+  width: min(100%, 320px) !important;
+}
+
+@media (max-width: 900px) {
+  .event-block-page .event-block-active-panel {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .event-block-page .event-block-active-panel .calculator-grid,
+  .event-block-page .event-block-active-panel [class*="calculator-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .event-block-page main {
+    width: calc(100% - 28px);
+  }
+
+  .event-block-page .event-block-active-panel .result-grid,
+  .event-block-page .event-block-active-panel [class*="result-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* === EVENT BLOCK ACTIVE PANEL RECOVERY END === */
