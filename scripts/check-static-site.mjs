@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 const required = [
   "index.html",
   "styles.css",
+  "assets/css/kolosseum.master.css",
   "script.js",
   "package.json",
   "favicon.svg"
@@ -47,37 +48,43 @@ for (const file of required) {
 }
 
 const html = readFileSync("index.html", "utf8");
+const cssAdapter = readFileSync("styles.css", "utf8");
+const cssMaster = readFileSync("assets/css/kolosseum.master.css", "utf8");
+const css = `${cssAdapter}\n${cssMaster}`;
 
-const requiredFragments = [
+const requiredHtmlFragments = [
   "viewport",
   "favicon.svg",
   "data-tool-card",
   "Event Block Calculator",
   "copyResultButton",
-  "assets/icons/"
+  "assets/icons/",
+  "./styles.css"
 ];
 
-for (const fragment of requiredFragments) {
+for (const fragment of requiredHtmlFragments) {
   if (!html.includes(fragment)) {
     throw new Error(`Missing expected HTML fragment: ${fragment}`);
   }
 }
 
-const css = readFileSync("styles.css", "utf8");
-
-const requiredCss = [
+const requiredCssFragments = [
   "@media (max-width: 1320px)",
   "@media (max-width: 1080px)",
   "@media (max-width: 820px)",
   "@media (max-width: 560px)",
   "overflow-x: hidden",
-  "--green: #99cf1b"
+  "#99cf1b"
 ];
 
-for (const fragment of requiredCss) {
+for (const fragment of requiredCssFragments) {
   if (!css.includes(fragment)) {
     throw new Error(`Missing expected CSS fragment: ${fragment}`);
   }
+}
+
+if (!cssAdapter.includes("kolosseum.master.css")) {
+  throw new Error("styles.css must import assets/css/kolosseum.master.css");
 }
 
 JSON.parse(readFileSync("package.json", "utf8"));
