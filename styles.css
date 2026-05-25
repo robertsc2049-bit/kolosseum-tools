@@ -4283,3 +4283,17 @@
 }
 
 /* === SHARED TOOL RELATED RAIL END === */
+
+/* === EVENT BLOCK LEGACY RELATED CARD REMOVAL START === */
+
+.event-block-page .tool-main-grid,
+.event-block-page .tool-content-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.event-block-page .tool-main-grid > *,
+.event-block-page .tool-content-grid > * {
+  min-width: 0;
+}
+
+/* === EVENT BLOCK LEGACY RELATED CARD REMOVAL END === */
