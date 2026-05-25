@@ -1,10 +1,35 @@
-﻿const cards = Array.from(document.querySelectorAll("[data-tool-card]"));
+const cards = Array.from(document.querySelectorAll("[data-tool-card]"));
+
 const previewToolName = document.getElementById("preview-tool-name");
-const previewToolStatus = document.getElementById("preview-tool-status");
+const metricSelectedTool = document.getElementById("metric-selected-tool");
+const metricStatus = document.getElementById("metric-status");
 const activeToolTitle = document.getElementById("active-tool-title");
 const activeToolStatus = document.getElementById("active-tool-status");
+const resultState = document.getElementById("resultState");
+const resultTitle = document.getElementById("resultTitle");
+const blockStart = document.getElementById("blockStart");
+const taperStart = document.getElementById("taperStart");
+const eventDateOut = document.getElementById("eventDateOut");
+const form = document.getElementById("eventBlockForm");
 
-function selectTool(card) {
+function clearResultForTool(name) {
+  if (name === "Event Block Calculator") {
+    resultState.textContent = "AWAITING INPUT";
+    resultTitle.textContent = "Choose an event date to generate block dates.";
+    blockStart.textContent = "—";
+    taperStart.textContent = "—";
+    eventDateOut.textContent = "—";
+    return;
+  }
+
+  resultState.textContent = "TOOL SELECTED";
+  resultTitle.textContent = "This tool slot is ready for its functional implementation.";
+  blockStart.textContent = "—";
+  taperStart.textContent = "—";
+  eventDateOut.textContent = "—";
+}
+
+function selectTool(card, shouldScroll = true) {
   for (const item of cards) {
     item.classList.remove("is-selected");
   }
@@ -12,39 +37,25 @@ function selectTool(card) {
   card.classList.add("is-selected");
 
   const name = card.dataset.toolName || "Selected Tool";
+  const shortName = card.dataset.toolShort || name;
   const status = card.dataset.toolStatus || "Available";
 
   previewToolName.textContent = name;
-  previewToolStatus.textContent = status;
+  metricSelectedTool.textContent = shortName;
+  metricStatus.textContent = status;
   activeToolTitle.textContent = name;
   activeToolStatus.textContent = status;
 
-  if (name !== "Event Block Calculator") {
-    document.querySelector(".result-kicker").textContent = "Tool selected";
-    document.querySelector("#resultCard h3").textContent = "This tool slot is ready for its functional implementation.";
-    document.getElementById("blockStart").textContent = "—";
-    document.getElementById("taperStart").textContent = "—";
-    document.getElementById("eventDateOut").textContent = "—";
-  } else {
-    document.querySelector(".result-kicker").textContent = "Awaiting input";
-    document.querySelector("#resultCard h3").textContent = "Choose an event date to generate block dates.";
-  }
+  clearResultForTool(name);
 
-  document.getElementById("active-tool").scrollIntoView({ behavior: "smooth", block: "start" });
+  if (shouldScroll) {
+    document.querySelector(".active-section").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 for (const card of cards) {
-  card.addEventListener("click", (event) => {
-    const target = event.target;
-    if (target instanceof HTMLElement && target.closest("[data-tool-action]")) {
-      event.preventDefault();
-    }
-
-    selectTool(card);
-  });
+  card.addEventListener("click", () => selectTool(card));
 }
-
-const form = document.getElementById("eventBlockForm");
 
 function formatDate(date) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -63,6 +74,13 @@ function addDays(date, days) {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  const selectedCard = document.querySelector("[data-tool-card].is-selected");
+  if (!selectedCard || selectedCard.dataset.toolName !== "Event Block Calculator") {
+    resultState.textContent = "TOOL SELECTED";
+    resultTitle.textContent = "Select Event Block Calculator to use this calculator.";
+    return;
+  }
+
   const eventDateInput = document.getElementById("eventDate");
   const blockLengthInput = document.getElementById("blockLength");
   const taperLengthInput = document.getElementById("taperLength");
@@ -75,12 +93,17 @@ form.addEventListener("submit", (event) => {
   const blockWeeks = Number(blockLengthInput.value);
   const taperWeeks = Number(taperLengthInput.value);
 
-  const blockStart = addDays(eventDate, -(blockWeeks * 7));
-  const taperStart = addDays(eventDate, -(taperWeeks * 7));
+  const calculatedBlockStart = addDays(eventDate, -(blockWeeks * 7));
+  const calculatedTaperStart = addDays(eventDate, -(taperWeeks * 7));
 
-  document.querySelector(".result-kicker").textContent = "Calculated";
-  document.querySelector("#resultCard h3").textContent = `${blockWeeks}-week block generated for the selected event date.`;
-  document.getElementById("blockStart").textContent = formatDate(blockStart);
-  document.getElementById("taperStart").textContent = taperWeeks === 0 ? "No taper" : formatDate(taperStart);
-  document.getElementById("eventDateOut").textContent = formatDate(eventDate);
+  resultState.textContent = "CALCULATED";
+  resultTitle.textContent = `${blockWeeks}-week block generated for the selected event date.`;
+  blockStart.textContent = formatDate(calculatedBlockStart);
+  taperStart.textContent = taperWeeks === 0 ? "No taper" : formatDate(calculatedTaperStart);
+  eventDateOut.textContent = formatDate(eventDate);
 });
+
+const initialCard = document.querySelector("[data-tool-card].is-selected");
+if (initialCard) {
+  selectTool(initialCard, false);
+}
