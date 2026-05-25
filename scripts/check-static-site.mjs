@@ -4,9 +4,17 @@ const required = [
   "index.html",
   "styles.css",
   "assets/css/kolosseum.master.css",
+  "assets/js/tool-pages.js",
   "script.js",
   "package.json",
-  "favicon.svg"
+  "favicon.svg",
+  "tools/index.html",
+  "tools/event-block-calculator/index.html",
+  "tools/ironclock/index.html",
+  "tools/gym-share/index.html",
+  "tools/session-log/index.html",
+  "tools/meet-planner/index.html",
+  "tools/load-sheet/index.html"
 ];
 
 const forbidden = [
@@ -48,9 +56,11 @@ for (const file of required) {
 }
 
 const html = readFileSync("index.html", "utf8");
+const toolsIndex = readFileSync("tools/index.html", "utf8");
 const cssAdapter = readFileSync("styles.css", "utf8");
 const cssMaster = readFileSync("assets/css/kolosseum.master.css", "utf8");
 const css = `${cssAdapter}\n${cssMaster}`;
+const toolPagesJs = readFileSync("assets/js/tool-pages.js", "utf8");
 
 const requiredHtmlFragments = [
   "viewport",
@@ -59,12 +69,29 @@ const requiredHtmlFragments = [
   "Event Block Calculator",
   "toolFunctionHost",
   "assets/icons/",
-  "./styles.css"
+  "./styles.css",
+  "./tools/event-block-calculator/"
 ];
 
 for (const fragment of requiredHtmlFragments) {
   if (!html.includes(fragment)) {
     throw new Error(`Missing expected HTML fragment: ${fragment}`);
+  }
+}
+
+const requiredToolsIndexFragments = [
+  "Tool Index",
+  "./event-block-calculator/",
+  "./ironclock/",
+  "./gym-share/",
+  "./session-log/",
+  "./meet-planner/",
+  "./load-sheet/"
+];
+
+for (const fragment of requiredToolsIndexFragments) {
+  if (!toolsIndex.includes(fragment)) {
+    throw new Error(`Missing expected tools index fragment: ${fragment}`);
   }
 }
 
@@ -74,7 +101,8 @@ const requiredCssFragments = [
   "@media (max-width: 820px)",
   "@media (max-width: 560px)",
   "overflow-x: hidden",
-  "#99cf1b"
+  "#99cf1b",
+  "TOOL PAGES START"
 ];
 
 for (const fragment of requiredCssFragments) {
@@ -85,6 +113,21 @@ for (const fragment of requiredCssFragments) {
 
 if (!cssAdapter.includes("kolosseum.master.css")) {
   throw new Error("styles.css must import assets/css/kolosseum.master.css");
+}
+
+const requiredToolJsFragments = [
+  "renderEventBlock",
+  "renderIronClock",
+  "renderGymShare",
+  "renderSessionLog",
+  "renderMeetPlanner",
+  "renderLoadSheet"
+];
+
+for (const fragment of requiredToolJsFragments) {
+  if (!toolPagesJs.includes(fragment)) {
+    throw new Error(`Missing expected tool page JS fragment: ${fragment}`);
+  }
 }
 
 JSON.parse(readFileSync("package.json", "utf8"));
