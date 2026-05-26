@@ -1831,3 +1831,22 @@
 }
 
 /* === GYM SHARE QR VISIBLE PREVIEW END === */
+
+/* === GYM SHARE QR IMAGE FIX START === */
+
+.gym-share-page #gymShareQrPreviewImage:not([src]),
+.gym-share-page #gymShareQrPreviewImage[src=""] {
+  visibility: hidden;
+}
+
+.gym-share-page #gymShareQrPreviewImage.is-ready {
+  visibility: visible;
+  opacity: 1;
+  background: #ffffff;
+}
+
+.gym-share-page .gym-share-qr-preview {
+  align-items: start;
+}
+
+/* === GYM SHARE QR IMAGE FIX END === */

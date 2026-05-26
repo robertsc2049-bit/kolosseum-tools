@@ -245,7 +245,7 @@
               window.print();
             };
 
-            image.src = "https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&data=" + encodeURIComponent(text);
+            image.src = "https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&format=png&data=" + encodeURIComponent(text);
           }
           else {
             window.print();
@@ -269,7 +269,7 @@
       }
 
       function makeQrUrl(text) {
-        return "https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&format=svg&data=" + encodeURIComponent(text);
+        return "https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&format=png&data=" + encodeURIComponent(text);
       }
 
       function buildShareText() {
