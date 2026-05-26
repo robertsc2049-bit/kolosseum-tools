@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 540" preserveAspectRatio="xMinYMid slice">
+  <defs>
+    <linearGradient id="fade-x" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#111719" stop-opacity=".88"/>
+      <stop offset=".46" stop-color="#0b1012" stop-opacity=".44"/>
+      <stop offset="1" stop-color="#050607" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fade-y" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#101719" stop-opacity=".76"/>
+      <stop offset=".56" stop-color="#080c0d" stop-opacity=".54"/>
+      <stop offset="1" stop-color="#050607" stop-opacity=".98"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".35" cy=".62" r=".7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".12"/>
+      <stop offset=".58" stop-color="#7c9f18" stop-opacity=".035"/>
+      <stop offset="1" stop-color="#050607" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation=".28"/>
+    </filter>
+  </defs>
+
+  <rect width="760" height="540" fill="#050607"/>
+  <rect width="760" height="540" fill="url(#fade-y)"/>
+  <rect width="760" height="540" fill="url(#fade-x)"/>
+  <rect width="760" height="540" fill="url(#glow)"/>
+
+  <g opacity=".33" stroke="#dfe5db" stroke-width=".75" fill="none" filter="url(#soft)">
+    <path d="M36 0v360"/>
+    <path d="M64 0v386"/>
+    <path d="M92 0v405"/>
+    <path d="M126 0v420"/>
+    <path d="M162 0v430"/>
+    <path d="M204 0v414"/>
+    <path d="M248 0v402"/>
+    <path d="M294 0v390"/>
+    <path d="M342 0v376"/>
+    <path d="M390 0v364"/>
+    <path d="M440 0v350"/>
+  </g>
+
+  <g opacity=".22" fill="#ffffff">
+    <rect x="42" y="12" width="20" height="338" rx="10"/>
+    <rect x="74" y="10" width="18" height="360" rx="9"/>
+    <rect x="108" y="4" width="22" height="378" rx="11"/>
+    <rect x="150" y="8" width="18" height="388" rx="9"/>
+    <rect x="196" y="3" width="20" height="384" rx="10"/>
+  </g>
+
+  <g opacity=".18" stroke="#ffffff" stroke-width="1">
+    <path d="M0 405 C160 382 290 390 458 372 C578 360 672 360 760 350"/>
+    <path d="M0 432 C186 407 330 416 488 398 C605 385 696 386 760 379"/>
+    <path d="M0 462 C205 439 382 440 538 420 C636 408 715 411 760 403"/>
+    <path d="M0 494 C230 475 420 472 580 450 C660 439 720 442 760 434"/>
+  </g>
+
+  <g opacity=".22" stroke="#ffffff" stroke-width=".8">
+    <path d="M126 0 L360 210"/>
+    <path d="M170 0 L430 230"/>
+    <path d="M220 0 L496 248"/>
+    <path d="M278 0 L560 268"/>
+    <path d="M336 0 L624 288"/>
+  </g>
+
+  <rect width="760" height="540" fill="url(#fade-x)"/>
+</svg>
