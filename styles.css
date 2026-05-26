@@ -4743,3 +4743,117 @@
 }
 
 /* === GYM SHARE ACTIVE SURFACE FIT END === */
+
+/* === GYM SHARE ACTIVE PANEL HARD FIT START === */
+
+.gym-share-page main {
+  width: min(var(--contentMax), calc(100% - (var(--pagePad) * 2)));
+  margin-inline: auto;
+}
+
+.gym-share-page .tool-main-grid,
+.gym-share-page .tool-content-grid,
+.gym-share-page .tool-layout,
+.gym-share-page .tool-page-grid {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.gym-share-page .gym-share-active-panel {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
+
+.gym-share-page .gym-share-active-panel > * {
+  min-width: 0 !important;
+}
+
+.gym-share-page .gym-share-active-panel .calculator-grid,
+.gym-share-page .gym-share-active-panel .tool-active-grid,
+.gym-share-page .gym-share-active-panel .active-tool-grid,
+.gym-share-page .gym-share-active-panel .form-result-grid,
+.gym-share-page .gym-share-active-panel [class*="calculator-grid"],
+.gym-share-page .gym-share-active-panel [class*="active-grid"] {
+  width: 100% !important;
+  max-width: none !important;
+  display: grid !important;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+.gym-share-page .gym-share-active-panel .tool-form,
+.gym-share-page .gym-share-active-panel form,
+.gym-share-page .gym-share-active-panel .tool-result-card,
+.gym-share-page .gym-share-active-panel .result-card,
+.gym-share-page .gym-share-active-panel .output-card,
+.gym-share-page .gym-share-active-panel .output-panel {
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+.gym-share-page .gym-share-active-panel .tool-result-card,
+.gym-share-page .gym-share-active-panel .result-card,
+.gym-share-page .gym-share-active-panel .output-card,
+.gym-share-page .gym-share-active-panel .output-panel {
+  width: 100% !important;
+}
+
+.gym-share-page .gym-share-active-panel textarea,
+.gym-share-page .gym-share-active-panel input,
+.gym-share-page .gym-share-active-panel select,
+.gym-share-page .gym-share-active-panel pre {
+  max-width: 100% !important;
+}
+
+.gym-share-page .gym-share-active-panel pre,
+.gym-share-page .gym-share-active-panel textarea {
+  min-height: 184px;
+}
+
+.gym-share-page .gym-share-active-panel .button,
+.gym-share-page .gym-share-active-panel button {
+  max-width: 320px;
+}
+
+.gym-share-page .gym-share-qr-actions {
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 18px;
+}
+
+.gym-share-page .tool-related-tools {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+@media (max-width: 900px) {
+  .gym-share-page .gym-share-active-panel .calculator-grid,
+  .gym-share-page .gym-share-active-panel .tool-active-grid,
+  .gym-share-page .gym-share-active-panel .active-tool-grid,
+  .gym-share-page .gym-share-active-panel .form-result-grid,
+  .gym-share-page .gym-share-active-panel [class*="calculator-grid"],
+  .gym-share-page .gym-share-active-panel [class*="active-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .gym-share-page main {
+    width: calc(100% - 28px);
+  }
+
+  .gym-share-page .gym-share-active-panel {
+    padding-inline: 16px !important;
+  }
+
+  .gym-share-page .gym-share-active-panel .button,
+  .gym-share-page .gym-share-active-panel button {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+/* === GYM SHARE ACTIVE PANEL HARD FIT END === */
