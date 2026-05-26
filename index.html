@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kolosseum Tools</title>
-  <meta name="description" content="Public Kolosseum tools for structured training operations.">
+  <meta name="description" content="Public strength tools for coaches, gyms, lifters, and event planning.">
   <meta name="theme-color" content="#050607">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,27 +15,65 @@
 <body class="home-page">
   <div class="site-shell">
     <header class="topbar">
-      <a class="brand" href="./" aria-label="Kolosseum Tools home"><span class="brand-word">KOLOSSEUM</span><span class="brand-line"></span><span class="brand-sub">TOOLS</span></a>
-      <nav class="nav" aria-label="Primary navigation"><a href="./">Home</a><a href="tools/">Tools</a><a href="#tools">Tool Bay</a><a href="#status">Status</a></nav>
-      <a class="nav-cta" href="tools/">Tool Index</a>
+      <a class="brand" href="./" aria-label="Kolosseum Tools home">
+        <span class="brand-word">KOLOSSEUM</span>
+        <span class="brand-line"></span>
+        <span class="brand-sub">TOOLS</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="./">Home</a>
+        <a href="tools/">Tools</a>
+        <a href="#tools">Tool Bay</a>
+        <a href="#use-cases">Use Cases</a>
+      </nav>
+
+      <a class="nav-cta" href="tools/">Open Tools</a>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="kicker">PUBLIC TOOL SURFACE</p>
-          <h1>Operational tools. Structured outputs.</h1>
-          <p class="lede">Focused calculators and utility surfaces for training planning, event timing, gym information, and simple operator workflows.</p>
-          <div class="hero-actions"><a class="button button-primary" href="tools/">View Tools</a><a class="button button-secondary" href="tools/event-block-calculator/">Open Event Block</a></div>
-          <div class="hero-note"><span class="note-mark"></span><span>Public tools. Kolosseum visual system. Direct outputs.</span></div>
+          <p class="kicker">KOLOSSEUM TOOLS</p>
+          <h1>Public strength tools for real training operations.</h1>
+          <p class="lede">Fast calculators and utility pages for coaches, gyms, lifters, and event planning. No account required. Open a tool, enter the details, copy the output.</p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="tools/">Open Tool Bay</a>
+            <a class="button button-secondary" href="tools/event-block-calculator/">Plan an Event Block</a>
+          </div>
+
+          <div class="hero-note">
+            <span class="note-mark"></span>
+            <span>Built for simple public use now, with a route into the wider Kolosseum platform later.</span>
+          </div>
         </div>
 
-        <aside class="dashboard-preview" aria-label="Kolosseum tools preview">
+        <aside class="dashboard-preview" aria-label="Kolosseum tools summary">
           <div class="preview-grid">
-            <div class="preview-card"><span>Tools</span><strong>6</strong><p>Current public surface</p></div>
-            <div class="preview-card"><span>Status</span><strong>Live</strong><p>Static deployment</p></div>
-            <div class="preview-card"><span>Mode</span><strong>Open</strong><p>No account required</p></div>
-            <div class="preview-card"><span>Output</span><strong>Copy</strong><p>Simple utility results</p></div>
+            <div class="preview-card">
+              <span>Event prep</span>
+              <strong>Block</strong>
+              <p>Plan backwards from a competition or test date.</p>
+            </div>
+
+            <div class="preview-card">
+              <span>Loading</span>
+              <strong>Bar</strong>
+              <p>Convert target loads into clearer equipment decisions.</p>
+            </div>
+
+            <div class="preview-card">
+              <span>Gym info</span>
+              <strong>Share</strong>
+              <p>Create public gym text and a printable QR asset.</p>
+            </div>
+
+            <div class="preview-card">
+              <span>Records</span>
+              <strong>Log</strong>
+              <p>Capture simple session notes without a login barrier.</p>
+            </div>
           </div>
         </aside>
       </section>
@@ -43,46 +81,75 @@
       <section id="tools" aria-label="Kolosseum tool bay">
         <p class="kicker">TOOL BAY</p>
         <div class="tool-grid">
-        <a class="tool-card is-selected" href="tools/event-block-calculator/">
-          <span class="tool-icon"><img src="./assets/icons/kolosseum-tools-icon-event-block-calculator.png" alt="" loading="lazy"></span>
-          <div><h2>Event Block Calculator</h2><p>Calculate block start, taper start, and event day from one event date.</p></div>
-          <span class="action-mark">+</span>
-        </a>
-        <a class="tool-card" href="tools/ironclock/">
-          <span class="tool-icon"><img src="./assets/icons/kolosseum-tools-icon-ironclock.png" alt="" loading="lazy"></span>
-          <div><h2>IronClock</h2><p>Calculate bar loading and run a focused rest timer.</p></div>
-          <span class="action-mark">+</span>
-        </a>
-        <a class="tool-card" href="tools/gym-share/">
-          <span class="tool-icon"><img src="./assets/icons/kolosseum-tools-icon-gym-share.png" alt="" loading="lazy"></span>
-          <div><h2>Gym Share</h2><p>Generate a public gym text block and printable QR asset.</p></div>
-          <span class="action-mark">+</span>
-        </a>
-        <a class="tool-card" href="tools/session-log/">
-          <span class="tool-icon"><img src="./assets/icons/kolosseum-tools-icon-session-log.png" alt="" loading="lazy"></span>
-          <div><h2>Session Log</h2><p>Record local session entries and copy the latest entry.</p></div>
-          <span class="action-mark">+</span>
-        </a>
-        <a class="tool-card" href="tools/meet-planner/">
-          <span class="tool-icon"><img src="./assets/icons/kolosseum-tools-icon-meet-planner.png" alt="" loading="lazy"></span>
-          <div><h2>Meet Planner</h2><p>Calculate setup, travel, and meet-day dates from one meet date.</p></div>
-          <span class="action-mark">+</span>
-        </a>
-        <a class="tool-card" href="tools/load-sheet/">
-          <span class="tool-icon"><img src="./assets/icons/kolosseum-tools-icon-load-sheet.png" alt="" loading="lazy"></span>
-          <div><h2>Load Sheet</h2><p>Generate a work-item load sheet from target load and equipment.</p></div>
-          <span class="action-mark">+</span>
-        </a>
+          <a class="tool-card is-selected" href="tools/event-block-calculator/">
+            <span class="tool-icon" aria-hidden="true"></span>
+            <div>
+              <h2>Event Block Calculator</h2>
+              <p>Calculate block start, taper start, and event day from one event date.</p>
+            </div>
+            <span class="action-mark">+</span>
+          </a>
+
+          <a class="tool-card" href="tools/ironclock/">
+            <span class="tool-icon" aria-hidden="true"></span>
+            <div>
+              <h2>IronClock</h2>
+              <p>Calculate bar loading and run a focused rest timer.</p>
+            </div>
+            <span class="action-mark">+</span>
+          </a>
+
+          <a class="tool-card" href="tools/gym-share/">
+            <span class="tool-icon" aria-hidden="true"></span>
+            <div>
+              <h2>Gym Share</h2>
+              <p>Generate a public gym text block and printable QR asset.</p>
+            </div>
+            <span class="action-mark">+</span>
+          </a>
+
+          <a class="tool-card" href="tools/session-log/">
+            <span class="tool-icon" aria-hidden="true"></span>
+            <div>
+              <h2>Session Log</h2>
+              <p>Record local session entries and copy the latest entry.</p>
+            </div>
+            <span class="action-mark">+</span>
+          </a>
+
+          <a class="tool-card" href="tools/meet-planner/">
+            <span class="tool-icon" aria-hidden="true"></span>
+            <div>
+              <h2>Meet Planner</h2>
+              <p>Calculate setup, travel, and meet-day dates from one meet date.</p>
+            </div>
+            <span class="action-mark">+</span>
+          </a>
+
+          <a class="tool-card" href="tools/load-sheet/">
+            <span class="tool-icon" aria-hidden="true"></span>
+            <div>
+              <h2>Load Sheet</h2>
+              <p>Generate a work-item load sheet from target load and equipment.</p>
+            </div>
+            <span class="action-mark">+</span>
+          </a>
         </div>
       </section>
 
-      <section class="panel" id="status">
-        <p class="kicker">STATUS</p>
-        <h2>Clean v2 surface</h2>
-        <p class="lede">This branch rebuilds Kolosseum Tools from wireframes, shared components, scoped CSS, and external JavaScript.</p>
+      <section class="panel" id="use-cases">
+        <p class="kicker">WHO IT IS FOR</p>
+        <h2>Coaches, gyms, lifters, and event organisers who need direct answers.</h2>
+        <p class="lede">Kolosseum Tools is the public utility layer: practical pages for common strength-sport planning tasks. The tools are intentionally narrow, fast, and copy-ready.</p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="tools/">Use the Tools</a>
+          <a class="button button-secondary" href="tools/gym-share/">Create a Gym Share QR</a>
+        </div>
       </section>
     </main>
   </div>
+
   <script src="assets/js/shared.js" defer></script>
 </body>
 </html>
