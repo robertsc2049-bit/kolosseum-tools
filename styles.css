@@ -5502,3 +5502,297 @@
 }
 
 /* === GYM SHARE PAGE REWRITE END === */
+
+/* === GYM SHARE PAGE REWRITE START === */
+
+.gym-share-page .gym-share-main {
+  width: min(var(--contentMax), calc(100% - (var(--pagePad) * 2)));
+  margin-inline: auto;
+}
+
+.gym-share-page .tool-page-hero {
+  width: 100%;
+  padding: 54px 0 34px;
+}
+
+.gym-share-page .tool-page-copy {
+  max-width: 860px;
+}
+
+.gym-share-page .tool-page-copy h1 {
+  margin: 0;
+  max-width: 760px;
+  color: var(--text);
+  font-size: clamp(4rem, 8vw, 7.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+}
+
+.gym-share-page .tool-page-copy .lede {
+  max-width: 760px;
+  margin-top: 28px;
+}
+
+.gym-share-page .tool-page-copy .hero-note {
+  margin-top: 28px;
+}
+
+.gym-share-page .gym-share-active-panel {
+  width: 100%;
+  margin: 0 0 18px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.032), rgba(255,255,255,0.008)),
+    rgba(7,8,9,0.84);
+}
+
+.gym-share-page .tool-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.gym-share-page .tool-panel-head h2 {
+  margin: 10px 0 0;
+  color: var(--text);
+  font-family: var(--fontDisplay);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+}
+
+.gym-share-page .status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border: 1px solid rgba(153,207,27,0.4);
+  border-radius: 999px;
+  padding: 0 16px;
+  color: var(--green);
+  background: rgba(153,207,27,0.035);
+  font-family: var(--fontDisplay);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.gym-share-page .gym-share-workspace {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.gym-share-page .gym-share-form,
+.gym-share-page .gym-share-result-card {
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  padding: 22px;
+  background: rgba(0,0,0,0.22);
+}
+
+.gym-share-page .gym-share-form label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.gym-share-page .gym-share-form input,
+.gym-share-page .gym-share-form textarea {
+  width: 100%;
+  margin: 0 0 18px;
+}
+
+.gym-share-page .gym-share-form textarea {
+  min-height: 170px;
+  resize: vertical;
+}
+
+.gym-share-page .gym-share-form .button {
+  width: 100%;
+}
+
+.gym-share-page .gym-share-result-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.gym-share-page .gym-share-result-card h2 {
+  margin: 14px 0 22px;
+  color: var(--text);
+  font-family: var(--fontDisplay);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 0.98;
+}
+
+.gym-share-page #gymShareOutput {
+  width: 100%;
+  min-height: 220px;
+  flex: 1;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  color: var(--text);
+  background: rgba(0,0,0,0.24);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.gym-share-page .gym-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.gym-share-page .gym-share-actions .button {
+  min-width: 180px;
+}
+
+.gym-share-qr-print-panel {
+  display: none;
+}
+
+.qr-print-card {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid rgba(153,207,27,0.38);
+  border-radius: 16px;
+  background: #050607;
+  color: #f4f5f0;
+}
+
+.qr-print-card h2 {
+  margin: 10px 0 20px;
+  font-family: var(--fontDisplay);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.qr-image {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 22px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.qr-print-card pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: #f4f5f0;
+  background: rgba(255,255,255,0.04);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.qr-print-note {
+  margin: 16px 0 0;
+  color: rgba(244,245,240,0.72);
+  font-size: 0.9rem;
+}
+
+.gym-share-page .tool-related-tools {
+  width: 100%;
+  max-width: none;
+}
+
+@media (max-width: 980px) {
+  .gym-share-page .gym-share-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .gym-share-page .tool-page-copy h1 {
+    font-size: clamp(3.4rem, 13vw, 5.4rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .gym-share-page .gym-share-main {
+    width: calc(100% - 28px);
+  }
+
+  .gym-share-page .tool-page-hero {
+    padding: 34px 0 24px;
+  }
+
+  .gym-share-page .gym-share-active-panel {
+    padding: 18px;
+  }
+
+  .gym-share-page .tool-panel-head {
+    align-items: flex-start;
+  }
+
+  .gym-share-page .gym-share-form,
+  .gym-share-page .gym-share-result-card {
+    padding: 18px;
+  }
+
+  .gym-share-page .gym-share-actions {
+    flex-direction: column;
+  }
+
+  .gym-share-page .gym-share-actions .button {
+    width: 100%;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .gym-share-qr-print-panel,
+  .gym-share-qr-print-panel * {
+    visibility: visible !important;
+  }
+
+  .gym-share-qr-print-panel {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    padding: 24mm;
+    background: #ffffff !important;
+  }
+
+  .qr-print-card {
+    color: #050607 !important;
+    background: #ffffff !important;
+    border: 2px solid #050607 !important;
+    box-shadow: none !important;
+  }
+
+  .qr-print-card .kicker,
+  .qr-print-card h2,
+  .qr-print-card pre,
+  .qr-print-note {
+    color: #050607 !important;
+  }
+
+  .qr-print-card pre {
+    background: #ffffff !important;
+    border-color: #050607 !important;
+  }
+
+  .qr-image {
+    border: 2px solid #050607 !important;
+  }
+}
+
+/* === GYM SHARE PAGE REWRITE END === */
