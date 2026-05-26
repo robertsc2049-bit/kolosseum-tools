@@ -1850,3 +1850,77 @@
 }
 
 /* === GYM SHARE QR IMAGE FIX END === */
+
+/* === GYM SHARE QR CSP FIX START === */
+
+.gym-share-page .gym-share-qr-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 148px;
+  gap: 18px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  background: rgba(0,0,0,0.18);
+}
+
+.gym-share-page .gym-share-qr-preview .kicker {
+  margin: 0 0 6px;
+}
+
+.gym-share-page .gym-share-qr-preview p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.gym-share-page #gymShareQrPreviewImage {
+  width: 148px;
+  height: 148px;
+  display: block;
+  padding: 8px;
+  border: 1px dashed rgba(153,207,27,0.28);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(153,207,27,0.08), rgba(153,207,27,0.015)),
+    rgba(0,0,0,0.24);
+  object-fit: contain;
+  visibility: hidden;
+}
+
+.gym-share-page #gymShareQrPreviewImage.is-ready {
+  visibility: visible;
+  border-style: solid;
+  border-color: rgba(153,207,27,0.42);
+  background: #ffffff;
+  opacity: 1;
+}
+
+.gym-share-page .gym-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gym-share-page .gym-share-actions .button {
+  min-width: 180px;
+}
+
+@media (max-width: 620px) {
+  .gym-share-page .gym-share-qr-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .gym-share-page #gymShareQrPreviewImage {
+    width: 172px;
+    height: 172px;
+  }
+
+  .gym-share-page .gym-share-actions .button {
+    width: 100%;
+  }
+}
+
+/* === GYM SHARE QR CSP FIX END === */
