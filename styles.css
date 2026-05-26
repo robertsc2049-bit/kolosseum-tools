@@ -4513,3 +4513,121 @@
 }
 
 /* === EVENT BLOCK ACTIVE PANEL RECOVERY END === */
+
+/* === GYM SHARE QR PRINT START === */
+
+.gym-share-page .tool-main-grid,
+.gym-share-page .tool-content-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.gym-share-page .tool-main-grid > *,
+.gym-share-page .tool-content-grid > * {
+  min-width: 0;
+}
+
+.gym-share-page .gym-share-print-qr-button {
+  margin-top: 12px;
+  width: min(100%, 320px);
+}
+
+.gym-share-page .tool-form .gym-share-print-qr-button,
+.gym-share-page .tool-card .gym-share-print-qr-button,
+.gym-share-page .active-tool .gym-share-print-qr-button {
+  display: block;
+}
+
+.gym-share-qr-print-panel {
+  display: none;
+}
+
+.qr-print-card {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  padding: 32px;
+  border: 1px solid rgba(153,207,27,0.38);
+  border-radius: 16px;
+  background: #050607;
+  color: #f4f5f0;
+}
+
+.qr-print-card h2 {
+  margin: 10px 0 20px;
+  font-family: var(--fontDisplay);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.qr-image {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 22px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.qr-print-card pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: #f4f5f0;
+  background: rgba(255,255,255,0.04);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.qr-print-note {
+  margin: 16px 0 0;
+  color: rgba(244,245,240,0.72);
+  font-size: 0.9rem;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .gym-share-qr-print-panel,
+  .gym-share-qr-print-panel * {
+    visibility: visible !important;
+  }
+
+  .gym-share-qr-print-panel {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    padding: 24mm;
+    background: #ffffff !important;
+  }
+
+  .qr-print-card {
+    color: #050607 !important;
+    background: #ffffff !important;
+    border: 2px solid #050607 !important;
+    box-shadow: none !important;
+  }
+
+  .qr-print-card .kicker,
+  .qr-print-card h2,
+  .qr-print-card pre,
+  .qr-print-note {
+    color: #050607 !important;
+  }
+
+  .qr-print-card pre {
+    background: #ffffff !important;
+    border-color: #050607 !important;
+  }
+
+  .qr-image {
+    border: 2px solid #050607 !important;
+  }
+}
+
+/* === GYM SHARE QR PRINT END === */
