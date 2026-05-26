@@ -75,7 +75,13 @@
             <h2>Gym Share Output</h2>
 
             <pre id="gymShareOutput">Enter gym details to generate a public share block.</pre>
-
+            <div class="gym-share-qr-preview" id="gymShareQrPreview" aria-live="polite">
+              <div>
+                <p class="kicker">QR PREVIEW</p>
+                <p>Generate share text to create a printable QR.</p>
+              </div>
+              <img id="gymShareQrPreviewImage" alt="Gym Share QR preview">
+            </div>
             <div class="gym-share-actions">
               <button class="button button-secondary" id="gymShareCopy" type="button">Copy Share Text</button>
               <button class="button button-secondary gym-share-print-qr-button" id="gymSharePrintQr" type="button">Print QR</button>
@@ -246,6 +252,155 @@
           }
         });
       }
+    })();
+  </script>
+  <script id="gymShareQrInlineScript">
+    (function () {
+      var form = document.getElementById("gymShareForm");
+      var output = document.getElementById("gymShareOutput");
+      var state = document.getElementById("gymShareState");
+      var copyButton = document.getElementById("gymShareCopy");
+      var printButton = document.getElementById("gymSharePrintQr");
+      var previewImage = document.getElementById("gymShareQrPreviewImage");
+
+      function value(id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : "";
+      }
+
+      function makeQrUrl(text) {
+        return "https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&format=svg&data=" + encodeURIComponent(text);
+      }
+
+      function buildShareText() {
+        var gym = value("gymName");
+        var location = value("gymLocation");
+        var note = value("gymNote");
+        var lines = [];
+
+        if (gym) {
+          lines.push(gym);
+        }
+
+        if (location) {
+          lines.push("Location: " + location);
+        }
+
+        if (note) {
+          lines.push(note);
+        }
+
+        return lines.join("\n");
+      }
+
+      function render() {
+        var text = buildShareText();
+
+        if (!output) {
+          return text;
+        }
+
+        if (!text) {
+          output.textContent = "Enter gym details to generate a public share block.";
+
+          if (state) {
+            state.textContent = "AWAITING INPUT";
+          }
+
+          if (previewImage) {
+            previewImage.removeAttribute("src");
+            previewImage.classList.remove("is-ready");
+          }
+
+          return "";
+        }
+
+        output.textContent = text;
+
+        if (state) {
+          state.textContent = "READY";
+        }
+
+        if (previewImage) {
+          previewImage.src = makeQrUrl(text);
+          previewImage.classList.add("is-ready");
+        }
+
+        return text;
+      }
+
+      if (form && form.dataset.qrBound !== "true") {
+        form.dataset.qrBound = "true";
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          render();
+        });
+
+        form.addEventListener("input", render);
+      }
+
+      if (copyButton && copyButton.dataset.qrBound !== "true") {
+        copyButton.dataset.qrBound = "true";
+
+        copyButton.addEventListener("click", function () {
+          var text = render();
+
+          if (!text) {
+            return;
+          }
+
+          navigator.clipboard.writeText(text).then(function () {
+            copyButton.textContent = "Copied";
+            window.setTimeout(function () {
+              copyButton.textContent = "Copy Share Text";
+            }, 1200);
+          }).catch(function () {
+            copyButton.textContent = "Copy failed";
+            window.setTimeout(function () {
+              copyButton.textContent = "Copy Share Text";
+            }, 1200);
+          });
+        });
+      }
+
+      if (printButton && printButton.dataset.qrBound !== "true") {
+        printButton.dataset.qrBound = "true";
+
+        printButton.addEventListener("click", function () {
+          var text = render() || "Enter gym details before printing QR.";
+          var title = document.getElementById("gymShareQrTitle");
+          var image = document.getElementById("gymShareQrImage");
+          var payload = document.getElementById("gymShareQrPayload");
+
+          if (title) {
+            title.textContent = text.split(/\r?\n/).filter(Boolean)[0] || "Gym Share";
+          }
+
+          if (payload) {
+            payload.textContent = text;
+          }
+
+          if (image) {
+            image.onload = function () {
+              window.setTimeout(function () {
+                window.print();
+              }, 180);
+            };
+
+            image.onerror = function () {
+              window.print();
+            };
+
+            image.src = makeQrUrl(text);
+          }
+          else {
+            window.print();
+          }
+        });
+      }
+
+      render();
     })();
   </script>
 </body>
