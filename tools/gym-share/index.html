@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../styles.css">
 </head>
-<body data-tool-page="gym-share">
+<body class="gym-share-page">
   <div class="site-shell">
     <header class="topbar">
       <a class="brand" href="../../" aria-label="Kolosseum Tools home">
@@ -31,13 +31,13 @@
       <a class="nav-cta" href="../">Tool Index</a>
     </header>
 
-    <main>
+    <main class="gym-share-main">
       <section class="tool-page-hero">
-        <div>
-          <p class="breadcrumb"><a href="../../">Home</a> / <a href="../">Tools</a> / Gym Share</p>
+        <div class="tool-page-copy">
           <p class="kicker">PUBLIC SHARE BLOCK</p>
           <h1>Gym Share</h1>
           <p class="lede">Generate a clean public text block for a gym, location, and access note.</p>
+
           <div class="hero-note">
             <span class="note-mark"></span>
             <span>Use this page to create a copy-ready gym information block for messages, posts, or simple listings.</span>
@@ -45,19 +45,55 @@
         </div>
       </section>
 
-      <section class="tool-page-layout">
-        <section class="active-panel">
-          <div class="active-header">
-            <div class="gym-share-active-panel">
-              <p class="kicker">ACTIVE TOOL</p>
-              <h2>Gym Share</h2>
-            </div>
-            <span>Live</span>
+      <section class="tool-panel gym-share-active-panel" aria-label="Gym Share active tool">
+        <div class="tool-panel-head">
+          <div>
+            <p class="kicker">ACTIVE TOOL</p>
+            <h2>Gym Share</h2>
           </div>
+          <span class="status-pill">Live</span>
+        </div>
 
-          <div id="toolPageHost" class="tool-function-host" aria-live="polite"></div>
-        </section>
+        <div class="gym-share-workspace">
+          <form class="tool-form gym-share-form" id="gymShareForm">
+            <label for="gymName">Gym name</label>
+            <input id="gymName" name="gymName" type="text" placeholder="Example Strength Club" autocomplete="organization">
+
+            <label for="gymLocation">Location</label>
+            <input id="gymLocation" name="gymLocation" type="text" placeholder="Town or area" autocomplete="address-level2">
+
+            <label for="gymNote">Public note</label>
+            <textarea id="gymNote" name="gymNote" rows="6" placeholder="Opening times, access notes, or contact route"></textarea>
+
+            <button class="button button-primary" type="submit">
+              Generate Share Text <span>+</span>
+            </button>
+          </form>
+
+          <article class="tool-result-card gym-share-result-card">
+            <p class="kicker" id="gymShareState">AWAITING INPUT</p>
+            <h2>Gym Share Output</h2>
+
+            <pre id="gymShareOutput">Enter gym details to generate a public share block.</pre>
+
+            <div class="gym-share-actions">
+              <button class="button button-secondary" id="gymShareCopy" type="button">Copy Share Text</button>
+              <button class="button button-secondary gym-share-print-qr-button" id="gymSharePrintQr" type="button">Print QR</button>
+            </div>
+          </article>
+        </div>
       </section>
+
+      <section class="gym-share-qr-print-panel" id="gymShareQrPrintPanel" aria-hidden="true">
+        <div class="qr-print-card">
+          <p class="kicker">GYM SHARE QR</p>
+          <h2 id="gymShareQrTitle">Gym Share</h2>
+          <img class="qr-image" id="gymShareQrImage" alt="Gym Share QR code">
+          <pre id="gymShareQrPayload"></pre>
+          <p class="qr-print-note">Scan the QR code or use the printed details below.</p>
+        </div>
+      </section>
+
       <section class="tool-related-tools" aria-label="Other Kolosseum tools">
         <div class="related-tools-head">
           <p class="kicker">OTHER TOOLS</p>
@@ -69,36 +105,148 @@
             <span><img src="../../assets/icons/kolosseum-tools-icon-event-block-calculator.png" alt="" loading="lazy"></span>
             <strong>Event Block</strong>
           </a>
+
           <a class="related-tool-chip" href="../ironclock/" aria-label="Open IronClock">
             <span><img src="../../assets/icons/kolosseum-tools-icon-ironclock.png" alt="" loading="lazy"></span>
             <strong>IronClock</strong>
           </a>
+
           <a class="related-tool-chip" href="../session-log/" aria-label="Open Session Log">
             <span><img src="../../assets/icons/kolosseum-tools-icon-session-log.png" alt="" loading="lazy"></span>
             <strong>Session Log</strong>
           </a>
+
           <a class="related-tool-chip" href="../meet-planner/" aria-label="Open Meet Planner">
             <span><img src="../../assets/icons/kolosseum-tools-icon-meet-planner.png" alt="" loading="lazy"></span>
             <strong>Meet Planner</strong>
           </a>
+
           <a class="related-tool-chip" href="../load-sheet/" aria-label="Open Load Sheet">
             <span><img src="../../assets/icons/kolosseum-tools-icon-load-sheet.png" alt="" loading="lazy"></span>
             <strong>Load Sheet</strong>
           </a>
         </div>
       </section>
-      <section class="gym-share-qr-print-panel" id="gymShareQrPrintPanel" aria-hidden="true">
-        <div class="qr-print-card">
-          <p class="kicker">GYM SHARE QR</p>
-          <h2 id="gymShareQrTitle">Gym Share</h2>
-          <img class="qr-image" id="gymShareQrImage" alt="Gym Share QR code">
-          <pre id="gymShareQrPayload"></pre>
-          <p class="qr-print-note">Scan the QR code or use the printed details below.</p>
-        </div>
-      </section>
     </main>
   </div>
 
-  <script src="../../assets/js/tool-pages.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("gymShareForm");
+      var output = document.getElementById("gymShareOutput");
+      var state = document.getElementById("gymShareState");
+      var copyButton = document.getElementById("gymShareCopy");
+      var printButton = document.getElementById("gymSharePrintQr");
+
+      function value(id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : "";
+      }
+
+      function buildShareText() {
+        var gym = value("gymName");
+        var location = value("gymLocation");
+        var note = value("gymNote");
+        var lines = [];
+
+        if (gym) {
+          lines.push(gym);
+        }
+
+        if (location) {
+          lines.push("Location: " + location);
+        }
+
+        if (note) {
+          lines.push(note);
+        }
+
+        if (lines.length === 0) {
+          return "";
+        }
+
+        return lines.join("\\n");
+      }
+
+      function render() {
+        var text = buildShareText();
+
+        if (!text) {
+          output.textContent = "Enter gym details to generate a public share block.";
+          state.textContent = "AWAITING INPUT";
+          return "";
+        }
+
+        output.textContent = text;
+        state.textContent = "READY";
+        return text;
+      }
+
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          render();
+        });
+
+        form.addEventListener("input", render);
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener("click", function () {
+          var text = render();
+
+          if (!text) {
+            return;
+          }
+
+          navigator.clipboard.writeText(text).then(function () {
+            copyButton.textContent = "Copied";
+            window.setTimeout(function () {
+              copyButton.textContent = "Copy Share Text";
+            }, 1200);
+          }).catch(function () {
+            copyButton.textContent = "Copy failed";
+            window.setTimeout(function () {
+              copyButton.textContent = "Copy Share Text";
+            }, 1200);
+          });
+        });
+      }
+
+      if (printButton) {
+        printButton.addEventListener("click", function () {
+          var text = render() || "Enter gym details before printing QR.";
+          var title = document.getElementById("gymShareQrTitle");
+          var image = document.getElementById("gymShareQrImage");
+          var payload = document.getElementById("gymShareQrPayload");
+
+          if (title) {
+            title.textContent = text.split(/\\r?\\n/).filter(Boolean)[0] || "Gym Share";
+          }
+
+          if (payload) {
+            payload.textContent = text;
+          }
+
+          if (image) {
+            image.onload = function () {
+              window.setTimeout(function () {
+                window.print();
+              }, 150);
+            };
+
+            image.onerror = function () {
+              window.print();
+            };
+
+            image.src = "https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&data=" + encodeURIComponent(text);
+          }
+          else {
+            window.print();
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
