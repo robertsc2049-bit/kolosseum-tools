@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Block Calculator | Kolosseum Tools</title>
+  <meta name="description" content="Calculate block start, taper start, and event day from one event date.">
+  <meta name="theme-color" content="#050607">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="event-block-page">
+  <main class="tool-main">
+    <header class="topbar">
+      <a class="brand" href="../../"><span class="brand-word">KOLOSSEUM</span><span class="brand-line"></span><span class="brand-sub">TOOLS</span></a>
+      <nav class="nav"><a href="../../">Home</a><a href="../">Tools</a></nav>
+      <a class="nav-cta" href="../">Tool Index</a>
+    </header>
+
+    <section class="tool-page-hero">
+      <p class="kicker">EVENT DATE PLANNER</p>
+      <h1>Event Block Calculator</h1>
+      <p class="lede">Calculate block start, taper start, and event day from one event date.</p>
+    </section>
+
+    <section class="panel active-tool-panel" aria-label="Event Block Calculator active tool">
+      <div class="panel-head">
+        <div><p class="kicker">ACTIVE TOOL</p><h2>Event Block Calculator</h2></div>
+        <span class="status-pill">Live</span>
+      </div>
+      <div class="tool-workspace">
+        <form class="tool-form" id="event-block-calculator-form">
+          <label for="eventDate">Event date</label>
+          <input id="eventDate" type="date">
+          <label for="blockLength">Block length</label>
+          <select id="blockLength"><option>12 weeks</option><option>16 weeks</option></select>
+          <label for="taperLength">Taper length</label>
+          <select id="taperLength"><option>1 week</option><option>2 weeks</option></select>
+          <button class="button button-primary" type="button">Calculate</button>
+        </form>
+        <article class="tool-output">
+          <p class="kicker">AWAITING INPUT</p>
+          <h2>Calculated dates</h2>
+          <pre>Select an event date to calculate block milestones.</pre>
+          <div class="actions"><button class="button button-secondary" type="button">Copy Result</button></div>
+        </article>
+      </div>
+    </section>
+
+      <section class="related-tools" aria-label="Other Kolosseum tools">
+        <div class="related-head"><p class="kicker">OTHER TOOLS</p><a href="../">View all</a></div>
+        <div class="related-rail">
+          <a class="related-chip" href="../ironclock/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-ironclock.png" alt="" loading="lazy"></span>
+            <strong>IronClock</strong>
+          </a>
+          <a class="related-chip" href="../gym-share/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-gym-share.png" alt="" loading="lazy"></span>
+            <strong>Gym Share</strong>
+          </a>
+          <a class="related-chip" href="../session-log/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-session-log.png" alt="" loading="lazy"></span>
+            <strong>Session Log</strong>
+          </a>
+          <a class="related-chip" href="../meet-planner/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-meet-planner.png" alt="" loading="lazy"></span>
+            <strong>Meet Planner</strong>
+          </a>
+          <a class="related-chip" href="../load-sheet/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-load-sheet.png" alt="" loading="lazy"></span>
+            <strong>Load Sheet</strong>
+          </a>
+        </div>
+      </section>
+  </main>
+  <script src="../../assets/js/shared.js" defer></script>
+</body>
+</html>

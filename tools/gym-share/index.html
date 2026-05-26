@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gym Share | Kolosseum Tools</title>
+  <meta name="description" content="Generate a clean public text block for a gym, location, and access note.">
+  <meta name="theme-color" content="#050607">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="gym-share-page">
+  <main class="tool-main">
+    <header class="topbar">
+      <a class="brand" href="../../"><span class="brand-word">KOLOSSEUM</span><span class="brand-line"></span><span class="brand-sub">TOOLS</span></a>
+      <nav class="nav"><a href="../../">Home</a><a href="../">Tools</a></nav>
+      <a class="nav-cta" href="../">Tool Index</a>
+    </header>
+
+    <section class="tool-page-hero">
+      <p class="kicker">PUBLIC SHARE BLOCK</p>
+      <h1>Gym Share</h1>
+      <p class="lede">Generate a clean public text block for a gym, location, and access note.</p>
+    </section>
+
+    <section class="panel active-tool-panel" aria-label="Gym Share active tool">
+      <div class="panel-head">
+        <div><p class="kicker">ACTIVE TOOL</p><h2>Gym Share</h2></div>
+        <span class="status-pill">Live</span>
+      </div>
+      <div class="tool-workspace">
+        <form class="tool-form" id="gym-share-form">
+          <label for="gymName">Gym name</label>
+          <input id="gymName" name="gymName" type="text" placeholder="Example Strength Club">
+          <label for="gymLocation">Location</label>
+          <input id="gymLocation" name="gymLocation" type="text" placeholder="Town or area">
+          <label for="gymNote">Public note</label>
+          <textarea id="gymNote" name="gymNote" placeholder="Opening times, access notes, or contact route"></textarea>
+          <button class="button button-primary" type="submit">Generate Share Text</button>
+        </form>
+        <article class="tool-output">
+          <p class="kicker" id="gymShareState">Awaiting input</p>
+          <h2>Gym Share Output</h2>
+          <pre id="gymShareOutput">Enter gym details to generate a public share block.</pre>
+          <div class="qr-preview" id="gymShareQrPreview">
+            <div><p class="kicker">QR PREVIEW</p><p>Generate share text to create a printable QR.</p></div>
+            <img id="gymShareQrPreviewImage" alt="Gym Share QR preview">
+          </div>
+          <div class="actions">
+            <button class="button button-secondary" id="gymShareCopy" type="button">Copy Share Text</button>
+            <button class="button button-secondary" id="gymSharePrintQr" type="button">Print QR</button>
+          </div>
+          <section class="print-panel" id="gymShareQrPrintPanel" aria-hidden="true">
+            <div>
+              <p class="kicker">GYM SHARE QR</p>
+              <h2 id="gymShareQrTitle">Gym Share</h2>
+              <img id="gymShareQrImage" alt="Gym Share QR code">
+              <pre id="gymShareQrPayload"></pre>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+
+      <section class="related-tools" aria-label="Other Kolosseum tools">
+        <div class="related-head"><p class="kicker">OTHER TOOLS</p><a href="../">View all</a></div>
+        <div class="related-rail">
+          <a class="related-chip" href="../event-block-calculator/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-event-block-calculator.png" alt="" loading="lazy"></span>
+            <strong>Event Block</strong>
+          </a>
+          <a class="related-chip" href="../ironclock/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-ironclock.png" alt="" loading="lazy"></span>
+            <strong>IronClock</strong>
+          </a>
+          <a class="related-chip" href="../session-log/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-session-log.png" alt="" loading="lazy"></span>
+            <strong>Session Log</strong>
+          </a>
+          <a class="related-chip" href="../meet-planner/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-meet-planner.png" alt="" loading="lazy"></span>
+            <strong>Meet Planner</strong>
+          </a>
+          <a class="related-chip" href="../load-sheet/">
+            <span class="tool-icon"><img src="../../assets/icons/kolosseum-tools-icon-load-sheet.png" alt="" loading="lazy"></span>
+            <strong>Load Sheet</strong>
+          </a>
+        </div>
+      </section>
+  </main>
+  <script src="../../assets/js/shared.js" defer></script>
+  <script src="../../assets/js/gym-share.js" defer></script>
+</body>
+</html>
