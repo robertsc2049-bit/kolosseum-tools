@@ -1,66 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 540" preserveAspectRatio="xMinYMid slice">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 568" preserveAspectRatio="xMinYMid slice">
   <defs>
-    <linearGradient id="fade-x" x1="0" x2="1" y1="0" y2="0">
-      <stop offset="0" stop-color="#111719" stop-opacity=".88"/>
-      <stop offset=".46" stop-color="#0b1012" stop-opacity=".44"/>
+    <linearGradient id="floorFade" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#1d2528" stop-opacity=".92"/>
+      <stop offset=".38" stop-color="#111719" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#070b0c" stop-opacity=".28"/>
       <stop offset="1" stop-color="#050607" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="fade-y" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#101719" stop-opacity=".76"/>
-      <stop offset=".56" stop-color="#080c0d" stop-opacity=".54"/>
-      <stop offset="1" stop-color="#050607" stop-opacity=".98"/>
+
+    <linearGradient id="darkVeil" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#050607" stop-opacity=".08"/>
+      <stop offset=".62" stop-color="#050607" stop-opacity=".26"/>
+      <stop offset="1" stop-color="#050607" stop-opacity=".92"/>
     </linearGradient>
-    <radialGradient id="glow" cx=".35" cy=".62" r=".7">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".12"/>
-      <stop offset=".58" stop-color="#7c9f18" stop-opacity=".035"/>
+
+    <linearGradient id="verticalVeil" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#050607" stop-opacity=".04"/>
+      <stop offset=".56" stop-color="#050607" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#050607" stop-opacity=".78"/>
+    </linearGradient>
+
+    <radialGradient id="coldGlow" cx=".33" cy=".62" r=".74">
+      <stop offset="0" stop-color="#e8eee7" stop-opacity=".16"/>
+      <stop offset=".48" stop-color="#97c91c" stop-opacity=".045"/>
       <stop offset="1" stop-color="#050607" stop-opacity="0"/>
     </radialGradient>
-    <filter id="soft">
-      <feGaussianBlur stdDeviation=".28"/>
+
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation=".22"/>
     </filter>
   </defs>
 
-  <rect width="760" height="540" fill="#050607"/>
-  <rect width="760" height="540" fill="url(#fade-y)"/>
-  <rect width="760" height="540" fill="url(#fade-x)"/>
-  <rect width="760" height="540" fill="url(#glow)"/>
+  <rect width="760" height="568" fill="#050607"/>
+  <rect width="760" height="568" fill="url(#floorFade)"/>
+  <rect width="760" height="568" fill="url(#coldGlow)"/>
 
-  <g opacity=".33" stroke="#dfe5db" stroke-width=".75" fill="none" filter="url(#soft)">
-    <path d="M36 0v360"/>
-    <path d="M64 0v386"/>
-    <path d="M92 0v405"/>
-    <path d="M126 0v420"/>
-    <path d="M162 0v430"/>
-    <path d="M204 0v414"/>
-    <path d="M248 0v402"/>
-    <path d="M294 0v390"/>
-    <path d="M342 0v376"/>
-    <path d="M390 0v364"/>
-    <path d="M440 0v350"/>
+  <g opacity=".58" stroke="#dfe5dc" stroke-width=".92" fill="none" filter="url(#softBlur)">
+    <path d="M44 0v389"/>
+    <path d="M69 0v407"/>
+    <path d="M95 0v424"/>
+    <path d="M125 0v438"/>
+    <path d="M158 0v446"/>
+    <path d="M196 0v438"/>
+    <path d="M235 0v428"/>
+    <path d="M278 0v416"/>
+    <path d="M323 0v400"/>
+    <path d="M370 0v386"/>
+    <path d="M420 0v372"/>
   </g>
 
-  <g opacity=".22" fill="#ffffff">
-    <rect x="42" y="12" width="20" height="338" rx="10"/>
-    <rect x="74" y="10" width="18" height="360" rx="9"/>
-    <rect x="108" y="4" width="22" height="378" rx="11"/>
-    <rect x="150" y="8" width="18" height="388" rx="9"/>
-    <rect x="196" y="3" width="20" height="384" rx="10"/>
+  <g opacity=".34" fill="#f2f5ed">
+    <rect x="40" y="0" width="18" height="396" rx="9"/>
+    <rect x="69" y="0" width="18" height="418" rx="9"/>
+    <rect x="101" y="0" width="21" height="434" rx="10"/>
+    <rect x="142" y="0" width="19" height="448" rx="9"/>
+    <rect x="189" y="0" width="20" height="444" rx="10"/>
   </g>
 
-  <g opacity=".18" stroke="#ffffff" stroke-width="1">
-    <path d="M0 405 C160 382 290 390 458 372 C578 360 672 360 760 350"/>
-    <path d="M0 432 C186 407 330 416 488 398 C605 385 696 386 760 379"/>
-    <path d="M0 462 C205 439 382 440 538 420 C636 408 715 411 760 403"/>
-    <path d="M0 494 C230 475 420 472 580 450 C660 439 720 442 760 434"/>
+  <g opacity=".23" stroke="#f2f5ed" stroke-width="1.15" fill="none">
+    <path d="M0 406 C92 392 177 389 260 392 C348 396 444 383 537 368 C617 355 691 352 760 347"/>
+    <path d="M0 434 C112 417 206 416 300 418 C386 419 474 405 559 391 C642 378 709 378 760 372"/>
+    <path d="M0 465 C131 445 245 444 351 446 C440 447 524 432 598 419 C674 406 725 409 760 402"/>
+    <path d="M0 497 C155 477 291 474 404 475 C492 476 574 462 637 451 C697 440 736 443 760 436"/>
+    <path d="M0 530 C188 510 342 506 463 506 C548 506 616 494 674 483 C719 475 744 478 760 472"/>
   </g>
 
-  <g opacity=".22" stroke="#ffffff" stroke-width=".8">
-    <path d="M126 0 L360 210"/>
-    <path d="M170 0 L430 230"/>
-    <path d="M220 0 L496 248"/>
-    <path d="M278 0 L560 268"/>
-    <path d="M336 0 L624 288"/>
+  <g opacity=".26" stroke="#f2f5ed" stroke-width=".82" fill="none">
+    <path d="M94 0 L342 232"/>
+    <path d="M138 0 L416 252"/>
+    <path d="M186 0 L488 271"/>
+    <path d="M238 0 L560 292"/>
+    <path d="M294 0 L632 315"/>
+    <path d="M354 0 L704 336"/>
   </g>
 
-  <rect width="760" height="540" fill="url(#fade-x)"/>
+  <g opacity=".14" stroke="#f2f5ed" stroke-width=".7" fill="none">
+    <path d="M0 95h410"/>
+    <path d="M0 142h470"/>
+    <path d="M0 191h520"/>
+    <path d="M0 242h562"/>
+  </g>
+
+  <rect width="760" height="568" fill="url(#verticalVeil)"/>
+  <rect width="760" height="568" fill="url(#darkVeil)"/>
 </svg>
