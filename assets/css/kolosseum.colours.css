@@ -1,0 +1,12 @@
+:root {
+  --bg: #050607;
+  --panel: #080a0b;
+  --panel2: #0d1011;
+  --line: rgba(255,255,255,0.09);
+  --lineStrong: rgba(153,207,27,0.38);
+  --text: #f4f5f0;
+  --muted: rgba(244,245,240,0.66);
+  --green: #99cf1b;
+  --greenGlow: rgba(153,207,27,0.16);
+  --shadow: 0 24px 80px rgba(0,0,0,0.42);
+}
