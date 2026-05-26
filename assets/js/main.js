@@ -1,5 +1,7 @@
 (function () {
   "use strict";
 
-  document.documentElement.classList.add("js-ready");
+  if (document.documentElement) {
+    document.documentElement.classList.add("js-ready");
+  }
 })();
